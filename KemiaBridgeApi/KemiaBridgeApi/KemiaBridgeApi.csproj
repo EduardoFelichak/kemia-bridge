@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>cfa97631-642c-418a-a0e1-e074db0b98d5</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.31" />  
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.31">
+	  <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <ProjectReference Include="..\KemiaBridge.Domain\KemiaBridge.Domain.csproj"/>
+	  <ProjectReference Include="..\KemiaBridge.Infra.CrossCutting.Ioc\KemiaBridge.Infra.CrossCutting.Ioc.csproj"/>
+	  <ProjectReference Include="..\KemiaBridge.Infra.CrossCutting\KemiaBridge.Infra.CrossCutting.csproj"/>
+	  <ProjectReference Include="..\KemiaBridge.Service\KemiaBridge.Service.csproj"/>
+  </ItemGroup>
+
+</Project>
