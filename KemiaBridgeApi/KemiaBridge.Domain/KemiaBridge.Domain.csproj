@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="DTos\" />
-    <Folder Include="Entities\" />
     <Folder Include="Enums\" />
     <Folder Include="Interface\" />
   </ItemGroup>

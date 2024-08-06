@@ -10,7 +10,6 @@
     <Folder Include="Configurators\" />
     <Folder Include="Context\" />
     <Folder Include="Seeds\" />
-    <Folder Include="Repository\" />
   </ItemGroup>
 
   <ItemGroup>
