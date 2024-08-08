@@ -1,7 +1,6 @@
 ﻿using KemiaBridge.Domain.DTos;
 using KemiaBridge.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace KemiaBridgeApi.Controllers
 {
