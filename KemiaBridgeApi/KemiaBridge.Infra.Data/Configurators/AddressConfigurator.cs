@@ -10,9 +10,9 @@ namespace KemiaBridge.Infra.Data.Configurators
         {
             builder.ToTable("address");
 
-            builder.HasKey(a => a.Id);
+            builder.HasKey(a => a.AddressId);
 
-            builder.Property(a => a.Id)
+            builder.Property(a => a.AddressId)
                 .ValueGeneratedOnAdd();
 
             builder.Property(a => a.ZipCode)

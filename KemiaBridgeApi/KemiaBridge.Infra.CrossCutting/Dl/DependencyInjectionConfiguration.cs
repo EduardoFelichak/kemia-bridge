@@ -11,6 +11,8 @@ namespace KemiaBridge.Infra.CrossCutting.Dl
         {
             services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddScoped<IAddressService, AddressService>();
+
+            services.AddScoped<IPhysicPersonRepository, PhysicPersonRepository>();
         }
     }
 }

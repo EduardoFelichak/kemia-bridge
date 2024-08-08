@@ -1,7 +1,6 @@
 ﻿using KemiaBridge.Domain.Entities;
 using KemiaBridge.Infra.Data.Configurators;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace KemiaBridge.Infra.Data.Context
 {
@@ -13,7 +12,7 @@ namespace KemiaBridge.Infra.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new AddressConfigurator());
+            modelBuilder.ConfigureModels();
 
             base.OnModelCreating(modelBuilder);
         }

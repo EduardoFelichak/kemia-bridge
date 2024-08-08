@@ -7,7 +7,7 @@ namespace KemiaBridge.Domain.Entities
     public class Address
     {
         [Key]
-        public int Id { get; private set; }
+        public int AddressId { get; private set; }
         public string ZipCode { get; private set; }
         public string Street { get; private set; }
         public string Complement { get; private set; }
@@ -17,7 +17,6 @@ namespace KemiaBridge.Domain.Entities
 
         #pragma warning disable CS8618
         public Address() { }
-        #pragma warning restore CS8618
 
         public Address(string zipcode, string street, string complement, string neighborhood, string city, string state)
         {
