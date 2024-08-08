@@ -15,6 +15,8 @@ namespace KemiaBridge.Domain.Entities
         public string City { get; private set; }
         public string State { get; private set; }
 
+        public Address() { }
+
         public Address(string zipcode, string street, string complement, string neighborhood, string city, string state)
         {
             this.ZipCode = zipcode;

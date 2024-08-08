@@ -4,9 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KemiaBridge.Infra.Data.Repository
 {
-    internal class AddressRepository : IAddressRepository
+    public class AddressRepository : IAddressRepository
     {
-        private readonly ConnectionContext _context = new ConnectionContext();
+        private readonly ConnectionContext _context;
+
+        public AddressRepository(ConnectionContext context) 
+        {
+            _context = context;
+        }
 
         public async Task AddAsync(Address address)
         {

@@ -21,10 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
-	  <ProjectReference Include="..\KemiaBridge.Domain\KemiaBridge.Domain.csproj"/>
-	  <ProjectReference Include="..\KemiaBridge.Infra.CrossCutting.Ioc\KemiaBridge.Infra.CrossCutting.Ioc.csproj"/>
-	  <ProjectReference Include="..\KemiaBridge.Infra.CrossCutting\KemiaBridge.Infra.CrossCutting.csproj"/>
-	  <ProjectReference Include="..\KemiaBridge.Service\KemiaBridge.Service.csproj"/>
+	  <ProjectReference Include="..\KemiaBridge.Domain\KemiaBridge.Domain.csproj" />
+	  <ProjectReference Include="..\KemiaBridge.Infra.CrossCutting.Ioc\KemiaBridge.Infra.CrossCutting.Ioc.csproj" />
+	  <ProjectReference Include="..\KemiaBridge.Infra.CrossCutting\KemiaBridge.Infra.CrossCutting.csproj" />
+	  <ProjectReference Include="..\KemiaBridge.Service\KemiaBridge.Service.csproj" />
   </ItemGroup>
 
 </Project>

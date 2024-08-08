@@ -1,4 +1,5 @@
 ﻿using KemiaBridge.Domain.Entities;
+using KemiaBridge.Infra.Data.Configurators;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -8,10 +9,13 @@ namespace KemiaBridge.Infra.Data.Context
     {
         public DbSet<Address> Addresses { get; set; } = null!;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseNpgsql(new ConfigurationBuilder()
-                .AddJsonFile("appsettings.Local.json", optional: false, reloadOnChange: true)
-                .Build()
-                .GetConnectionString("DefaultConnection")!);
+        public ConnectionContext(DbContextOptions<ConnectionContext> options) : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new AddressConfigurator());
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

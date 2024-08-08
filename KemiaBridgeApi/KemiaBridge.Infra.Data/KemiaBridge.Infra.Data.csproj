@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Configurators\" />
     <Folder Include="Context\" />
+    <Folder Include="Repository\" />  
     <Folder Include="Seeds\" />
   </ItemGroup>
 
@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KemiaBridge.Domain\KemiaBridge.Domain.csproj" />
-    <ProjectReference Include="..\KemiaBridge.Infra.CrossCutting\KemiaBridge.Infra.CrossCutting.csproj" />
   </ItemGroup>	
 	
 </Project>
