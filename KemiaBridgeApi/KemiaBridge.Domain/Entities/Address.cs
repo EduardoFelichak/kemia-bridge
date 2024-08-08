@@ -15,7 +15,9 @@ namespace KemiaBridge.Domain.Entities
         public string City { get; private set; }
         public string State { get; private set; }
 
+        #pragma warning disable CS8618
         public Address() { }
+        #pragma warning restore CS8618
 
         public Address(string zipcode, string street, string complement, string neighborhood, string city, string state)
         {
