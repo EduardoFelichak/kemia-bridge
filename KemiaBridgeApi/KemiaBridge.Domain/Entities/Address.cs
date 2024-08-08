@@ -21,12 +21,12 @@ namespace KemiaBridge.Domain.Entities
 
         public Address(string zipcode, string street, string complement, string neighborhood, string city, string state)
         {
-            this.ZipCode = zipcode;
-            this.Street = street;
-            this.Complement = complement;
-            this.Neighborhood = neighborhood;
-            this.City = city;
-            this.State = state;
+            ZipCode      = zipcode;
+            Street       = street;
+            Complement   = complement;
+            Neighborhood = neighborhood;
+            City         = city;
+            State        = state;
         }
     }
 }
