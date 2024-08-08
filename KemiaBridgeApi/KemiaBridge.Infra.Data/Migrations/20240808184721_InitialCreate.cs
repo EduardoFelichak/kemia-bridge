@@ -13,7 +13,7 @@ namespace KemiaBridge.Infra.Data.Migrations
                 name: "address",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    AddressId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ZipCode = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
                     Street = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
@@ -24,7 +24,7 @@ namespace KemiaBridge.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_address", x => x.Id);
+                    table.PrimaryKey("PK_address", x => x.AddressId);
                 });
         }
 

@@ -23,11 +23,11 @@ namespace KemiaBridge.Infra.Data.Migrations
 
             modelBuilder.Entity("KemiaBridge.Domain.Entities.Address", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AddressId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("AddressId"));
 
                     b.Property<string>("City")
                         .IsRequired()
@@ -59,7 +59,7 @@ namespace KemiaBridge.Infra.Data.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("character varying(10)");
 
-                    b.HasKey("Id");
+                    b.HasKey("AddressId");
 
                     b.ToTable("address", (string)null);
                 });

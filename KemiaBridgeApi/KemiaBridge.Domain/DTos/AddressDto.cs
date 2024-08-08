@@ -2,7 +2,7 @@
 {
     public class AddressDto
     {
-        public int Id { get; private set; }
+        public int AddressId { get; private set; }
         public string ZipCode { get; set; } = string.Empty;
         public string Street { get; set; } = string.Empty;
         public string Complement { get; set; } = string.Empty;
@@ -12,7 +12,7 @@
 
         public void setNewId(int id)
         {
-            Id = id;
+            AddressId = id;
         }
     }
 }

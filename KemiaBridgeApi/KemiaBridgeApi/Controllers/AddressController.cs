@@ -19,7 +19,7 @@ namespace KemiaBridgeApi.Controllers
         public async Task<IActionResult> Add(AddressDto addressDto)
         {
             await _addressService.AddAsync(addressDto);
-            return CreatedAtAction(nameof(GetById), new { id = addressDto.Id }, addressDto);
+            return CreatedAtAction(nameof(GetById), new { id = addressDto.AddressId }, addressDto);
         }
 
         [HttpGet("{id}")]
