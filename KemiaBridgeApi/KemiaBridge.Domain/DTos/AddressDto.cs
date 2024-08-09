@@ -15,5 +15,10 @@
         {
             AddressId = id;
         }
+
+        public void setPersonId(int personId)
+        {
+            PersonId = personId;
+        }
     }
 }

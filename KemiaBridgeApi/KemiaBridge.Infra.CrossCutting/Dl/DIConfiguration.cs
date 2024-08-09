@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace KemiaBridge.Infra.CrossCutting.Dl
 {
-    public static class DependencyInjectionConfiguration
+    public static class DIConfiguration
     {
         public static void AddScopedConfig(this IServiceCollection services)
         {
@@ -15,7 +15,6 @@ namespace KemiaBridge.Infra.CrossCutting.Dl
 
             services.AddScoped<IPhysicPersonRepository, PhysicPersonRepository>();
             services.AddScoped<IPhysicPersonService, PhysicPersonService>();
-            services.AddScoped<IPhysicPersonFormService, PhysicPersonFormService>();
 
             services.AddScoped<ILegalPersonRepository, LegalPersonRepository>();   
             services.AddScoped<ILegalPersonService, LegalPersonService>();

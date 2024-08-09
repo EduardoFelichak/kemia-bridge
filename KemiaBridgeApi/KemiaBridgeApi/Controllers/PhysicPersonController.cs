@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace KemiaBridgeApi.Controllers
 {
     [ApiController]
-    [Route("api/v1/physicPerson")]
+    [Route("api/v1/person/physic")]
     public class PhysicPersonController : ControllerBase
     {
         private readonly IPhysicPersonService _physicPersonService;

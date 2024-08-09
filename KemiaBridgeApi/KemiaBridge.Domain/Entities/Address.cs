@@ -30,10 +30,5 @@ namespace KemiaBridge.Domain.Entities
             State        = state;
             PersonId     = personId;
         }
-
-        public void setPersonId(int id)
-        {
-            PersonId = id;
-        }
     }
 }

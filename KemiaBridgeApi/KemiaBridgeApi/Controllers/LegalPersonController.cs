@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace KemiaBridgeApi.Controllers
 {
     [ApiController]
-    [Route("api/v1/legalPerson")]
+    [Route("api/v1/person/legal")]
     public class LegalPersonController : ControllerBase
     {
         private readonly ILegalPersonService _legalPersonService;
