@@ -5,23 +5,31 @@ using KemiaBridge.Infra.Data.Repository.Abstract;
 using KemiaBridge.Service.Interface;
 using KemiaBridge.Service.Mappers;
 using KemiaBridge.Service.Mappers.Profiles;
-    
+using KemiaBridge.Service.Validators;
+
 namespace KemiaBridge.Service.Services
 {
     public class PhysicPersonService : IPhysicPersonService
     {
         private readonly IPhysicPersonRepository _physicPersonRepository;
         private readonly IMapper _mapper;
+        private readonly IAddressValidator _addressValidator;
 
-        public PhysicPersonService(IPhysicPersonRepository physicPersonRepository)
+        public PhysicPersonService(IPhysicPersonRepository physicPersonRepository,
+                                   IAddressValidator addressValidator)
         {
             _physicPersonRepository = physicPersonRepository;
+            _addressValidator = addressValidator;
             _mapper = MapperConfig.GetMapper<PersonProfile>();
         }
 
         public async Task AddAsync(PhysicPersonDto physicPersonDto)
         {
             var physicPerson = _mapper.Map<PhysicPerson>(physicPersonDto);
+
+            if (!_addressValidator.Exists(physicPersonDto.AddressId))
+                throw new KeyNotFoundException($"Address not exists");
+
             await _physicPersonRepository.AddAsync( physicPerson );
             physicPersonDto.setNewId(physicPerson.PersonId);
         }
