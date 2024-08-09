@@ -10,6 +10,11 @@ namespace KemiaBridge.Infra.Data.Configurators
         {
             builder.ToTable("legal_person");
 
+            builder.HasOne<Person>()
+                   .WithOne()
+                   .HasForeignKey<LegalPerson>(pp => pp.PersonId)
+                   .OnDelete(DeleteBehavior.Cascade);
+
             builder.Property(lp => lp.FederalRegister)
                    .IsRequired()
                    .HasMaxLength(18);  
