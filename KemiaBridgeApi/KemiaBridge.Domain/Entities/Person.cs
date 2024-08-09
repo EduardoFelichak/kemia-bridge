@@ -11,18 +11,15 @@ namespace KemiaBridge.Domain.Entities
         public string Name { get; private set; }
         public string Email { get; private set; }
         public string Phone { get; private set; }
-        [ForeignKey("Address")]
-        public int AddressId { get; private set; }
 
         #pragma warning disable CS8618 
         public Person() { }
 
-        public Person(string name, string email, string phone, int addressId)
+        public Person(string name, string email, string phone)
         {
             Name       = name;
             Email      = email;
             Phone      = phone;
-            AddressId  = addressId;
         }
     }
 }

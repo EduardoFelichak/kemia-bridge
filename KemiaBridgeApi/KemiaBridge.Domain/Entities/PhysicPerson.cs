@@ -14,8 +14,8 @@ namespace KemiaBridge.Domain.Entities
         #pragma warning disable CS8618
         public PhysicPerson() { }
 
-        public PhysicPerson(string name, string email, string phone, int addressId, string registerCode, string socialName, DateTime bornAt, GenderEnum gender)
-            : base(name, email, phone, addressId)
+        public PhysicPerson(string name, string email, string phone, string registerCode, string socialName, DateTime bornAt, GenderEnum gender)
+            : base(name, email, phone)
         {
             RegisterCode = registerCode;
             SocialName   = socialName;

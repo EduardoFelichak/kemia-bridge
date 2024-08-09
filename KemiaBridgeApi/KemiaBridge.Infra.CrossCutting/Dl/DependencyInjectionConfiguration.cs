@@ -1,9 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using KemiaBridge.Infra.Data.Repository;
+﻿using KemiaBridge.Infra.Data.Repository;
+using KemiaBridge.Infra.Data.Repository.Abstract;
 using KemiaBridge.Service.Interface;
 using KemiaBridge.Service.Services;
-using KemiaBridge.Infra.Data.Repository.Abstract;
-using KemiaBridge.Service.Validators;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace KemiaBridge.Infra.CrossCutting.Dl
 {
@@ -13,10 +12,10 @@ namespace KemiaBridge.Infra.CrossCutting.Dl
         {
             services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddScoped<IAddressService, AddressService>();
-            services.AddScoped<IAddressValidator, AddressValidator>();
 
             services.AddScoped<IPhysicPersonRepository, PhysicPersonRepository>();
             services.AddScoped<IPhysicPersonService, PhysicPersonService>();
+            services.AddScoped<IPhysicPersonFormService, PhysicPersonFormService>();
 
             services.AddScoped<ILegalPersonRepository, LegalPersonRepository>();   
             services.AddScoped<ILegalPersonService, LegalPersonService>();

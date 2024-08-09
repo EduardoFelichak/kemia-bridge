@@ -9,7 +9,7 @@ namespace KemiaBridge.Domain.DTos
         public DateTime BornAt { get; set; }
         public GenderEnum Gender { get; set; }
 
-        public void setNewId(int id)
+        public void SetNewId(int id)
         {
             PersonId = id;
         }

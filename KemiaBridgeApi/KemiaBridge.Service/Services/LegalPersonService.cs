@@ -12,25 +12,18 @@ namespace KemiaBridge.Service.Services
     {
         private readonly ILegalPersonRepository _legalPersonRepository;
         private readonly IMapper _mapper;
-        private readonly IAddressValidator _addressValidator;
 
-        public LegalPersonService(ILegalPersonRepository legalPersonRepository,
-                                  IAddressValidator addressValidator)
+        public LegalPersonService(ILegalPersonRepository legalPersonRepository)
         {
             _legalPersonRepository = legalPersonRepository;
-            _addressValidator = addressValidator;
             _mapper = MapperConfig.GetMapper<PersonProfile>();
         }
 
         public async Task AddAsync(LegalPersonDto legalPersonDto)
         {
             var legalPerson = _mapper.Map<LegalPerson>(legalPersonDto);
-
-            if (!_addressValidator.Exists(legalPerson.AddressId))
-                throw new KeyNotFoundException("Address not found");
-
             await _legalPersonRepository.AddAsync( legalPerson );
-            legalPersonDto.setNewId(legalPerson.PersonId);
+            legalPersonDto.SetNewId(legalPerson.PersonId);
         }
 
         public async Task<IEnumerable<LegalPerson>> GetAllAsync()

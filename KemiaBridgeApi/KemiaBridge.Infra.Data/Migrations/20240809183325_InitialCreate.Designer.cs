@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KemiaBridge.Infra.Data.Migrations
 {
     [DbContext(typeof(ConnectionContext))]
-    [Migration("20240809000209_PersonCreate")]
-    partial class PersonCreate
+    [Migration("20240809183325_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,6 +47,9 @@ namespace KemiaBridge.Infra.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
+                    b.Property<int>("PersonId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("State")
                         .IsRequired()
                         .HasMaxLength(2)
@@ -64,6 +67,9 @@ namespace KemiaBridge.Infra.Data.Migrations
 
                     b.HasKey("AddressId");
 
+                    b.HasIndex("PersonId")
+                        .IsUnique();
+
                     b.ToTable("address", (string)null);
                 });
 
@@ -74,9 +80,6 @@ namespace KemiaBridge.Infra.Data.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("PersonId"));
-
-                    b.Property<int>("AddressId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -94,8 +97,6 @@ namespace KemiaBridge.Infra.Data.Migrations
                         .HasColumnType("character varying(20)");
 
                     b.HasKey("PersonId");
-
-                    b.HasIndex("AddressId");
 
                     b.ToTable("person", (string)null);
                 });
@@ -140,11 +141,11 @@ namespace KemiaBridge.Infra.Data.Migrations
                     b.ToTable("physic_person", (string)null);
                 });
 
-            modelBuilder.Entity("KemiaBridge.Domain.Entities.Person", b =>
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.Address", b =>
                 {
-                    b.HasOne("KemiaBridge.Domain.Entities.Address", null)
-                        .WithMany()
-                        .HasForeignKey("AddressId")
+                    b.HasOne("KemiaBridge.Domain.Entities.Person", null)
+                        .WithOne()
+                        .HasForeignKey("KemiaBridge.Domain.Entities.Address", "PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

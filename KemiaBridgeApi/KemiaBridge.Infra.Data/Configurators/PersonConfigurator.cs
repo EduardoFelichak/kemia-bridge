@@ -26,13 +26,6 @@ namespace KemiaBridge.Infra.Data.Configurators
             builder.Property(p => p.Phone)
                    .IsRequired()
                    .HasMaxLength(20);
-
-            builder.Property(p => p.AddressId)
-                   .IsRequired();
-
-            builder.HasOne<Address>()
-                   .WithMany()
-                   .HasForeignKey(p => p.AddressId);
         }
     }
 }
