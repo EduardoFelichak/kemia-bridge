@@ -10,6 +10,11 @@ namespace KemiaBridge.Infra.Data.Configurators
         {
             builder.ToTable("physic_person");
 
+            builder.HasOne<Person>()
+                   .WithOne()
+                   .HasForeignKey<PhysicPerson>(pp => pp.PersonId)
+                   .OnDelete(DeleteBehavior.Cascade);
+
             builder.Property(pp => pp.RegisterCode)
                    .IsRequired()
                    .HasMaxLength(14); 

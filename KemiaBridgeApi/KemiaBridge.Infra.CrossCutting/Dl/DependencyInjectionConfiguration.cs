@@ -18,7 +18,6 @@ namespace KemiaBridge.Infra.CrossCutting.Dl
 
             services.AddScoped<ILegalPersonRepository, LegalPersonRepository>();   
             services.AddScoped<ILegalPersonService, LegalPersonService>();
-            
         }
     }
 }
