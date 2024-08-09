@@ -1,0 +1,22 @@
+﻿using KemiaBridge.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace KemiaBridge.Infra.Data.Configurators
+{
+    public class LegalPersonConfigurator : IEntityTypeConfiguration<LegalPerson>
+    {
+        public void Configure(EntityTypeBuilder<LegalPerson> builder)
+        {
+            builder.ToTable("legal_person");
+
+            builder.Property(lp => lp.FederalRegister)
+                   .IsRequired()
+                   .HasMaxLength(18);  
+
+            builder.Property(lp => lp.CorporateReason)
+                   .IsRequired()
+                   .HasMaxLength(150);
+        }
+    }
+}

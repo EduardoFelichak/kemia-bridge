@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using KemiaBridge.Domain.DTos;
 using KemiaBridge.Domain.Entities;
-using KemiaBridge.Infra.Data.Repository;
+using KemiaBridge.Infra.Data.Repository.Abstract;
 using KemiaBridge.Service.Interface;
 using KemiaBridge.Service.Mappers;
 using KemiaBridge.Service.Mappers.Profiles;

@@ -2,6 +2,7 @@
 using KemiaBridge.Infra.Data.Repository;
 using KemiaBridge.Service.Interface;
 using KemiaBridge.Service.Services;
+using KemiaBridge.Infra.Data.Repository.Abstract;
 
 namespace KemiaBridge.Infra.CrossCutting.Dl
 {
@@ -13,6 +14,11 @@ namespace KemiaBridge.Infra.CrossCutting.Dl
             services.AddScoped<IAddressService, AddressService>();
 
             services.AddScoped<IPhysicPersonRepository, PhysicPersonRepository>();
+            services.AddScoped<IPhysicPersonService, PhysicPersonService>();
+
+            services.AddScoped<ILegalPersonRepository, LegalPersonRepository>();   
+            services.AddScoped<ILegalPersonService, LegalPersonService>();
+            
         }
     }
 }

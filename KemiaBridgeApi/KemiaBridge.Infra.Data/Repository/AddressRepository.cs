@@ -1,5 +1,6 @@
 ﻿using KemiaBridge.Domain.Entities;
 using KemiaBridge.Infra.Data.Context;
+using KemiaBridge.Infra.Data.Repository.Abstract;
 using Microsoft.EntityFrameworkCore;
 
 namespace KemiaBridge.Infra.Data.Repository

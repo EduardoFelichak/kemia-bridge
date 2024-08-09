@@ -7,6 +7,9 @@ namespace KemiaBridge.Infra.Data.Context
     public class ConnectionContext : DbContext
     {
         public DbSet<Address> Addresses { get; set; } = null!;
+        public DbSet<Person> Persons { get; set; } = null !;
+        public DbSet<PhysicPerson> PhysicPeople { get; set; } = null!;
+        public DbSet<LegalPerson> LegalPeople { get; set; } = null!;
 
         public ConnectionContext(DbContextOptions<ConnectionContext> options) : base(options) { }
 

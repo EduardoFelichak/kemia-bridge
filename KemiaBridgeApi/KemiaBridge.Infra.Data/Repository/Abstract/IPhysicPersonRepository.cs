@@ -1,6 +1,6 @@
 ﻿using KemiaBridge.Domain.Entities;
 
-namespace KemiaBridge.Infra.Data.Repository
+namespace KemiaBridge.Infra.Data.Repository.Abstract
 {
     public interface IPhysicPersonRepository
     {

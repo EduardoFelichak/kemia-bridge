@@ -10,6 +10,7 @@ namespace KemiaBridge.Service.Mappers
         public static void RegisterMappings(this IServiceCollection services)
         {
             services.AddAutoMapper(typeof(AddressProfile));
+            services.AddAutoMapper(typeof(PersonProfile));  
         }
 
         public static IMapper GetMapper<TProfile>() where TProfile : Profile, new()
