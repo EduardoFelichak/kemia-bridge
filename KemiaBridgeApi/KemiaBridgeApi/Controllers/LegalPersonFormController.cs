@@ -19,17 +19,17 @@ namespace KemiaBridgeApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(LegalPersonFormDto legalPersonFormDto)
+        public async Task<IActionResult> Add(LegalPersonDto legalPersonDto, AddressDto addressDto)
         {
-            await _legalPersonService.AddAsync(legalPersonFormDto.LegalPersonDto);
+            await _legalPersonService.AddAsync(legalPersonDto);
 
-            legalPersonFormDto.AddressDto.setPersonId(legalPersonFormDto.LegalPersonDto.PersonId);
-            await _addressService.AddAsync(legalPersonFormDto.AddressDto);
+            addressDto.setPersonId(legalPersonDto.PersonId);
+            await _addressService.AddAsync(addressDto);
 
             return Ok(new
             {
-                legalPersonId = legalPersonFormDto.LegalPersonDto.PersonId,
-                addressId     = legalPersonFormDto.AddressDto.AddressId,
+                legalPersonId = legalPersonDto.PersonId,
+                addressId     = addressDto.AddressId,
             });
         }
     }

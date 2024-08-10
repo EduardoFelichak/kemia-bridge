@@ -15,21 +15,21 @@ namespace KemiaBridgeApi.Controllers
                                           IAddressService addressService)
         {
             _physicPersonService = physicPersonService;
-            _addressService = addressService;
+            _addressService      = addressService;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(PhysicPersonFormDto physicPersonFormDto)
+        public async Task<IActionResult> Add(PhysicPersonDto physicPersonDto, AddressDto addressDto)
         {
-            await _physicPersonService.AddAsync(physicPersonFormDto.PhysicPersonDto);
+            await _physicPersonService.AddAsync(physicPersonDto);
 
-            physicPersonFormDto.AddressDto.setPersonId(physicPersonFormDto.PhysicPersonDto.PersonId);
-            await _addressService.AddAsync(physicPersonFormDto.AddressDto);
+            addressDto.setPersonId(physicPersonDto.PersonId);
+            await _addressService.AddAsync(addressDto);
 
             return Ok( new
             {
-                personId  = physicPersonFormDto.PhysicPersonDto.PersonId,
-                addressId = physicPersonFormDto.AddressDto.AddressId,
+                personId  = physicPersonDto.PersonId,
+                addressId = addressDto.AddressId,
             });
         }
     }
