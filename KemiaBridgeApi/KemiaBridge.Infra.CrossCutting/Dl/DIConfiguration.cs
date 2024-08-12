@@ -20,6 +20,7 @@ namespace KemiaBridge.Infra.CrossCutting.Dl
             services.AddScoped<ILegalPersonService, LegalPersonService>();
 
             services.AddScoped<IStationRepository, StationRepository>();
+            services.AddScoped<IStationService, StationService>();
         }
     }
 }
