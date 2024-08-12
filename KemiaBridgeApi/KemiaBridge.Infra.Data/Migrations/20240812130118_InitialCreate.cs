@@ -121,8 +121,7 @@ namespace KemiaBridge.Infra.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_address_PersonId",
                 table: "address",
-                column: "PersonId",
-                unique: true);
+                column: "PersonId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_station_AddressId",

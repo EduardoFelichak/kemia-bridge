@@ -1,8 +1,8 @@
 ﻿namespace KemiaBridge.Domain.DTos
 {
-    public class PhysicPersonFormDto
+    public class StationFormDto
     {
-        public PhysicPersonDto? PhysicPerson { get; set; }
+        public StationDto? Station { get; set; } 
         public AddressDto? Address { get; set; }
     }
 }

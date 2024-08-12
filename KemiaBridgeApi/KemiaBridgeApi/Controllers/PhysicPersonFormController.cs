@@ -21,9 +21,9 @@ namespace KemiaBridgeApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(PhysicPersonFormDto formDto)
         {
-            await _physicPersonService.AddAsync( formDto.PhysicPerson );
+            await _physicPersonService.AddAsync( formDto.PhysicPerson! );
 
-            formDto.Address.setPersonId(formDto.PhysicPerson.PersonId);
+            formDto.Address!.setPersonId(formDto.PhysicPerson!.PersonId);
             await _addressService.AddAsync( formDto.Address );
 
             return Ok( new

@@ -12,6 +12,8 @@ namespace KemiaBridge.Domain.Entities
         public string Email { get; private set; }
         public string Phone { get; private set; }
 
+        public ICollection<Address> Addresses { get; set; }
+
         #pragma warning disable CS8618 
         public Person() { }
 

@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KemiaBridge.Infra.Data.Migrations
 {
     [DbContext(typeof(ConnectionContext))]
-    [Migration("20240812121549_InitialCreate")]
+    [Migration("20240812130118_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,8 +67,7 @@ namespace KemiaBridge.Infra.Data.Migrations
 
                     b.HasKey("AddressId");
 
-                    b.HasIndex("PersonId")
-                        .IsUnique();
+                    b.HasIndex("PersonId");
 
                     b.ToTable("address", (string)null);
                 });
@@ -177,8 +176,8 @@ namespace KemiaBridge.Infra.Data.Migrations
             modelBuilder.Entity("KemiaBridge.Domain.Entities.Address", b =>
                 {
                     b.HasOne("KemiaBridge.Domain.Entities.Person", null)
-                        .WithOne()
-                        .HasForeignKey("KemiaBridge.Domain.Entities.Address", "PersonId")
+                        .WithMany("Addresses")
+                        .HasForeignKey("PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -214,6 +213,11 @@ namespace KemiaBridge.Infra.Data.Migrations
                         .HasForeignKey("KemiaBridge.Domain.Entities.PhysicPerson", "PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.Person", b =>
+                {
+                    b.Navigation("Addresses");
                 });
 #pragma warning restore 612, 618
         }
