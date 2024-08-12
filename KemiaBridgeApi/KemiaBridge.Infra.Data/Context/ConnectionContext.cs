@@ -10,6 +10,7 @@ namespace KemiaBridge.Infra.Data.Context
         public DbSet<Person> Persons { get; set; } = null !;
         public DbSet<PhysicPerson> PhysicPeople { get; set; } = null!;
         public DbSet<LegalPerson> LegalPeople { get; set; } = null!;
+        public DbSet<Station> Stations { get; set; } = null!;
 
         public ConnectionContext(DbContextOptions<ConnectionContext> options) : base(options) { }
 
