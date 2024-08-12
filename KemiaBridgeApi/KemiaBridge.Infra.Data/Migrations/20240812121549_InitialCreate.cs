@@ -90,9 +90,49 @@ namespace KemiaBridge.Infra.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "station",
+                columns: table => new
+                {
+                    StationId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    OperationDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    PersonId = table.Column<int>(type: "integer", nullable: false),
+                    AddressId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_station", x => x.StationId);
+                    table.ForeignKey(
+                        name: "FK_station_address_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "address",
+                        principalColumn: "AddressId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_station_person_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "person",
+                        principalColumn: "PersonId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_address_PersonId",
                 table: "address",
+                column: "PersonId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_station_AddressId",
+                table: "station",
+                column: "AddressId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_station_PersonId",
+                table: "station",
                 column: "PersonId",
                 unique: true);
         }
@@ -100,13 +140,16 @@ namespace KemiaBridge.Infra.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "address");
-
-            migrationBuilder.DropTable(
                 name: "legal_person");
 
             migrationBuilder.DropTable(
                 name: "physic_person");
+
+            migrationBuilder.DropTable(
+                name: "station");
+
+            migrationBuilder.DropTable(
+                name: "address");
 
             migrationBuilder.DropTable(
                 name: "person");

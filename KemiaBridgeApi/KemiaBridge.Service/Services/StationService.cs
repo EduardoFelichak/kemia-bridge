@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using KemiaBridge.Domain.DTos;
 using KemiaBridge.Domain.Entities;
-using KemiaBridge.Infra.Data.Repository;
+using KemiaBridge.Infra.Data.Repository.Abstract;
 using KemiaBridge.Service.Interface;
 using KemiaBridge.Service.Mappers;
 using KemiaBridge.Service.Mappers.Profiles;
@@ -10,10 +10,10 @@ namespace KemiaBridge.Service.Services
 {
     public class StationService : IStationService
     {
-        private readonly StationRepository _stationRepository;
+        private readonly IStationRepository _stationRepository;
         private readonly IMapper           _mapper;
 
-        public StationService(StationRepository stationRepository)
+        public StationService(IStationRepository stationRepository)
         {
             _stationRepository = stationRepository;
             _mapper            = MapperConfig.GetMapper<StationProfile>();

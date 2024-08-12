@@ -99,6 +99,39 @@ namespace KemiaBridge.Infra.Data.Migrations
                     b.ToTable("person", (string)null);
                 });
 
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.Station", b =>
+                {
+                    b.Property<int>("StationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("StationId"));
+
+                    b.Property<int>("AddressId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<DateTime>("OperationDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("PersonId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("StationId");
+
+                    b.HasIndex("AddressId")
+                        .IsUnique();
+
+                    b.HasIndex("PersonId")
+                        .IsUnique();
+
+                    b.ToTable("station", (string)null);
+                });
+
             modelBuilder.Entity("KemiaBridge.Domain.Entities.LegalPerson", b =>
                 {
                     b.HasBaseType("KemiaBridge.Domain.Entities.Person");
@@ -144,6 +177,21 @@ namespace KemiaBridge.Infra.Data.Migrations
                     b.HasOne("KemiaBridge.Domain.Entities.Person", null)
                         .WithOne()
                         .HasForeignKey("KemiaBridge.Domain.Entities.Address", "PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.Station", b =>
+                {
+                    b.HasOne("KemiaBridge.Domain.Entities.Address", null)
+                        .WithOne()
+                        .HasForeignKey("KemiaBridge.Domain.Entities.Station", "AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KemiaBridge.Domain.Entities.Person", null)
+                        .WithOne()
+                        .HasForeignKey("KemiaBridge.Domain.Entities.Station", "PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
