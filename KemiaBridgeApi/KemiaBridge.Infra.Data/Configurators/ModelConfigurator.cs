@@ -11,6 +11,7 @@ namespace KemiaBridge.Infra.Data.Configurators
             modelBuilder.ApplyConfiguration(new PersonConfigurator());
             modelBuilder.ApplyConfiguration(new PhysicPersonConfigurator());
             modelBuilder.ApplyConfiguration(new LegalPersonConfigurator());
+            modelBuilder.ApplyConfiguration(new StationConfigurator());
         }
     }
 }
