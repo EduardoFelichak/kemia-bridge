@@ -11,8 +11,8 @@ namespace KemiaBridge.Domain.Entities
         #pragma warning disable CS8618
         public LegalPerson() { }
 
-        public LegalPerson(string name, string email, string phone, string federalRegister, string corporateReason)
-            : base(name, email, phone)
+        public LegalPerson(string name, string email, string phone, int addressId, string federalRegister, string corporateReason)
+            : base(name, email, phone, addressId)
         {
             FederalRegister = federalRegister;
             CorporateReason = corporateReason;

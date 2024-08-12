@@ -8,7 +8,7 @@
         public int PersonId { get; set; }
         public int AddressId { get; set; }
 
-        public void setNewId(int id)
+        public void SetNewId(int id)
         {
             StationId = id;
         }

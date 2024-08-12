@@ -22,11 +22,6 @@ namespace KemiaBridge.Infra.Data.Configurators
             builder.Property(s => s.OperationDate)
                 .IsRequired();
 
-            builder.HasOne<Person>()
-                .WithOne()
-                .HasForeignKey<Station>(s => s.PersonId)
-                .OnDelete(DeleteBehavior.Cascade);
-
             builder.HasOne<Address>()
                 .WithOne()
                 .HasForeignKey<Station>(s => s.AddressId)

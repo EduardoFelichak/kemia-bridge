@@ -20,10 +20,8 @@ namespace KemiaBridgeApi.Controllers
         [HttpPost("{id}")]
         public async Task<IActionResult> Add(int id, StationFormDto formDto)
         {
-            formDto.Address!.PersonId = id;
             await _addressService.AddAsync( formDto.Address! );
 
-            formDto.Station!.PersonId = id;
             formDto.Station!.AddressId = formDto.Address!.AddressId;
             await _stationService.AddAsync( formDto.Station );
 

@@ -9,16 +9,10 @@
         public string Neighborhood { get; set; } = string.Empty;
         public string City { get; set; } = string.Empty;
         public string State { get; set; } = string.Empty;
-        public int PersonId { get; set; }
 
         public void setNewId(int id)
         {
             AddressId = id;
-        }
-
-        public void setPersonId(int personId)
-        {
-            PersonId = personId;
         }
     }
 }

@@ -10,10 +10,10 @@ namespace KemiaBridge.Domain.Entities
         public int StationId { get; private set; }
         public string Name { get; private set; }
         public DateTime OperationDate { get; private set; }
-        [ForeignKey(nameof(Person))]
-        public int PersonId { get; private set; }
         [ForeignKey(nameof(Address))]
         public int AddressId { get; private set; }
+
+        public ICollection<PersonStation> PersonStations { get; set; }
 
         #pragma warning disable CS8618
         public Station() { }
@@ -23,7 +23,6 @@ namespace KemiaBridge.Domain.Entities
             StationId     = stationId;
             Name          = name;
             OperationDate = operationDate;
-            PersonId      = personId;
             AddressId     = addressId;
         }
     }

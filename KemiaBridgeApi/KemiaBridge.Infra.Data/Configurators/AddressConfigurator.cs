@@ -38,11 +38,6 @@ namespace KemiaBridge.Infra.Data.Configurators
             builder.Property(a => a.State)
                 .IsRequired()
                 .HasMaxLength(2);
-
-            builder.HasOne<Person>()
-                .WithMany(p => p.Addresses)
-                .HasForeignKey(a => a.PersonId)
-                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

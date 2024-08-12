@@ -23,7 +23,7 @@ namespace KemiaBridge.Service.Services
         {
             var station = _mapper.Map<Station>(stationDto);
             await _stationRepository.AddAsync( station );
-            stationDto.setNewId(station.StationId);
+            stationDto.SetNewId(station.StationId);
         }
 
         public Task<IEnumerable<Station>> GetAllAsync()

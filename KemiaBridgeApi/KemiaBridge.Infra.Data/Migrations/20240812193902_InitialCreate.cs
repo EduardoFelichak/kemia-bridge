@@ -11,21 +11,6 @@ namespace KemiaBridge.Infra.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "person",
-                columns: table => new
-                {
-                    PersonId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    Email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    Phone = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_person", x => x.PersonId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "address",
                 columns: table => new
                 {
@@ -36,17 +21,53 @@ namespace KemiaBridge.Infra.Data.Migrations
                     Complement = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     Neighborhood = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     City = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    State = table.Column<string>(type: "character varying(2)", maxLength: 2, nullable: false),
-                    PersonId = table.Column<int>(type: "integer", nullable: false)
+                    State = table.Column<string>(type: "character varying(2)", maxLength: 2, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_address", x => x.AddressId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "person",
+                columns: table => new
+                {
+                    PersonId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Phone = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    AddressId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_person", x => x.PersonId);
                     table.ForeignKey(
-                        name: "FK_address_person_PersonId",
-                        column: x => x.PersonId,
-                        principalTable: "person",
-                        principalColumn: "PersonId",
+                        name: "FK_person_address_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "address",
+                        principalColumn: "AddressId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "station",
+                columns: table => new
+                {
+                    StationId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    OperationDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    AddressId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_station", x => x.StationId);
+                    table.ForeignKey(
+                        name: "FK_station_address_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "address",
+                        principalColumn: "AddressId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -91,48 +112,44 @@ namespace KemiaBridge.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "station",
+                name: "person_station",
                 columns: table => new
                 {
-                    StationId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    OperationDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     PersonId = table.Column<int>(type: "integer", nullable: false),
-                    AddressId = table.Column<int>(type: "integer", nullable: false)
+                    StationId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_station", x => x.StationId);
+                    table.PrimaryKey("PK_person_station", x => new { x.PersonId, x.StationId });
                     table.ForeignKey(
-                        name: "FK_station_address_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "address",
-                        principalColumn: "AddressId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_station_person_PersonId",
+                        name: "FK_person_station_person_PersonId",
                         column: x => x.PersonId,
                         principalTable: "person",
                         principalColumn: "PersonId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_person_station_station_StationId",
+                        column: x => x.StationId,
+                        principalTable: "station",
+                        principalColumn: "StationId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_address_PersonId",
-                table: "address",
-                column: "PersonId");
+                name: "IX_person_AddressId",
+                table: "person",
+                column: "AddressId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_person_station_StationId",
+                table: "person_station",
+                column: "StationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_station_AddressId",
                 table: "station",
                 column: "AddressId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_station_PersonId",
-                table: "station",
-                column: "PersonId",
                 unique: true);
         }
 
@@ -142,16 +159,19 @@ namespace KemiaBridge.Infra.Data.Migrations
                 name: "legal_person");
 
             migrationBuilder.DropTable(
+                name: "person_station");
+
+            migrationBuilder.DropTable(
                 name: "physic_person");
 
             migrationBuilder.DropTable(
                 name: "station");
 
             migrationBuilder.DropTable(
-                name: "address");
+                name: "person");
 
             migrationBuilder.DropTable(
-                name: "person");
+                name: "address");
         }
     }
 }

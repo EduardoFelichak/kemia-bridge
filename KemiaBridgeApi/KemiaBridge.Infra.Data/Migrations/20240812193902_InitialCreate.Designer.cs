@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KemiaBridge.Infra.Data.Migrations
 {
     [DbContext(typeof(ConnectionContext))]
-    [Migration("20240812130118_InitialCreate")]
+    [Migration("20240812193902_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,9 +47,6 @@ namespace KemiaBridge.Infra.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.Property<int>("PersonId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("State")
                         .IsRequired()
                         .HasMaxLength(2)
@@ -67,8 +64,6 @@ namespace KemiaBridge.Infra.Data.Migrations
 
                     b.HasKey("AddressId");
 
-                    b.HasIndex("PersonId");
-
                     b.ToTable("address", (string)null);
                 });
 
@@ -79,6 +74,9 @@ namespace KemiaBridge.Infra.Data.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("PersonId"));
+
+                    b.Property<int>("AddressId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -97,7 +95,25 @@ namespace KemiaBridge.Infra.Data.Migrations
 
                     b.HasKey("PersonId");
 
+                    b.HasIndex("AddressId")
+                        .IsUnique();
+
                     b.ToTable("person", (string)null);
+                });
+
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.PersonStation", b =>
+                {
+                    b.Property<int>("PersonId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("StationId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("PersonId", "StationId");
+
+                    b.HasIndex("StationId");
+
+                    b.ToTable("person_station", (string)null);
                 });
 
             modelBuilder.Entity("KemiaBridge.Domain.Entities.Station", b =>
@@ -119,15 +135,9 @@ namespace KemiaBridge.Infra.Data.Migrations
                     b.Property<DateTime>("OperationDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("PersonId")
-                        .HasColumnType("integer");
-
                     b.HasKey("StationId");
 
                     b.HasIndex("AddressId")
-                        .IsUnique();
-
-                    b.HasIndex("PersonId")
                         .IsUnique();
 
                     b.ToTable("station", (string)null);
@@ -173,13 +183,32 @@ namespace KemiaBridge.Infra.Data.Migrations
                     b.ToTable("physic_person", (string)null);
                 });
 
-            modelBuilder.Entity("KemiaBridge.Domain.Entities.Address", b =>
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.Person", b =>
                 {
-                    b.HasOne("KemiaBridge.Domain.Entities.Person", null)
-                        .WithMany("Addresses")
+                    b.HasOne("KemiaBridge.Domain.Entities.Address", null)
+                        .WithOne()
+                        .HasForeignKey("KemiaBridge.Domain.Entities.Person", "AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.PersonStation", b =>
+                {
+                    b.HasOne("KemiaBridge.Domain.Entities.Person", "Person")
+                        .WithMany("PersonStations")
                         .HasForeignKey("PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("KemiaBridge.Domain.Entities.Station", "Station")
+                        .WithMany("PersonStations")
+                        .HasForeignKey("StationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Person");
+
+                    b.Navigation("Station");
                 });
 
             modelBuilder.Entity("KemiaBridge.Domain.Entities.Station", b =>
@@ -187,12 +216,6 @@ namespace KemiaBridge.Infra.Data.Migrations
                     b.HasOne("KemiaBridge.Domain.Entities.Address", null)
                         .WithOne()
                         .HasForeignKey("KemiaBridge.Domain.Entities.Station", "AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("KemiaBridge.Domain.Entities.Person", null)
-                        .WithOne()
-                        .HasForeignKey("KemiaBridge.Domain.Entities.Station", "PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -217,7 +240,12 @@ namespace KemiaBridge.Infra.Data.Migrations
 
             modelBuilder.Entity("KemiaBridge.Domain.Entities.Person", b =>
                 {
-                    b.Navigation("Addresses");
+                    b.Navigation("PersonStations");
+                });
+
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.Station", b =>
+                {
+                    b.Navigation("PersonStations");
                 });
 #pragma warning restore 612, 618
         }

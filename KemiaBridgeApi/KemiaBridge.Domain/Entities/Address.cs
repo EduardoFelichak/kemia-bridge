@@ -14,13 +14,11 @@ namespace KemiaBridge.Domain.Entities
         public string Neighborhood { get; private set; }
         public string City { get; private set; }
         public string State { get; private set; }
-        [ForeignKey("Person")]
-        public int PersonId { get; private set; }
 
         #pragma warning disable CS8618
         public Address() { }
 
-        public Address(string zipcode, string street, string complement, string neighborhood, string city, string state, int personId)
+        public Address(string zipcode, string street, string complement, string neighborhood, string city, string state)
         {
             ZipCode      = zipcode;
             Street       = street;
@@ -28,7 +26,6 @@ namespace KemiaBridge.Domain.Entities
             Neighborhood = neighborhood;
             City         = city;
             State        = state;
-            PersonId     = personId;
         }
     }
 }
