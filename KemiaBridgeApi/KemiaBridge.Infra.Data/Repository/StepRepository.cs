@@ -28,7 +28,7 @@ namespace KemiaBridge.Infra.Data.Repository
         public async Task<Step?> GetByIdAsync(int id)
         {
             return await _context.Steps
-                                  .FirstOrDefaultAsync(s => s.StepId == id);
+                                 .FirstOrDefaultAsync(s => s.StepId == id);
         }
 
         public async Task UpdateAsync(Step step)
