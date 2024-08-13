@@ -13,6 +13,7 @@ namespace KemiaBridge.Domain.Entities
         [ForeignKey(nameof(Address))]
         public int AddressId { get; private set; }
 
+        public ICollection<Step> Steps { get; set; }
         public ICollection<PersonStation> PersonStations { get; set; }
 
         #pragma warning disable CS8618

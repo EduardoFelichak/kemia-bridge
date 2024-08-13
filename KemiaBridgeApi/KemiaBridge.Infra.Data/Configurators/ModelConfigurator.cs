@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using KemiaBridge.Infra.Data.Configurators.Models;
 
 namespace KemiaBridge.Infra.Data.Configurators
 {
@@ -12,6 +13,7 @@ namespace KemiaBridge.Infra.Data.Configurators
             modelBuilder.ApplyConfiguration(new LegalPersonConfigurator());
             modelBuilder.ApplyConfiguration(new StationConfigurator());
             modelBuilder.ApplyConfiguration(new PersonStationConfigurator());
+            modelBuilder.ApplyConfiguration(new StepConfigurator());
         }
     }
 }

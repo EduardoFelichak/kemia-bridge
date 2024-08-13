@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace KemiaBridge.Infra.Data.Configurators
+namespace KemiaBridge.Infra.Data.Configurators.Models
 {
     public class PhysicPersonConfigurator : IEntityTypeConfiguration<PhysicPerson>
     {
@@ -17,7 +17,7 @@ namespace KemiaBridge.Infra.Data.Configurators
 
             builder.Property(pp => pp.RegisterCode)
                    .IsRequired()
-                   .HasMaxLength(14); 
+                   .HasMaxLength(14);
 
             builder.Property(pp => pp.SocialName)
                    .HasMaxLength(100);
