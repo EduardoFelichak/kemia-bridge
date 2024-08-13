@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace KemiaBridge.Infra.Data.Configurators
+namespace KemiaBridge.Infra.Data.Configurators.Models
 {
     public class PersonConfigurator : IEntityTypeConfiguration<Person>
     {

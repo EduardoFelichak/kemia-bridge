@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace KemiaBridge.Infra.Data.Configurators
+namespace KemiaBridge.Infra.Data.Configurators.Models
 {
     public class LegalPersonConfigurator : IEntityTypeConfiguration<LegalPerson>
     {
@@ -17,7 +17,7 @@ namespace KemiaBridge.Infra.Data.Configurators
 
             builder.Property(lp => lp.FederalRegister)
                    .IsRequired()
-                   .HasMaxLength(18);  
+                   .HasMaxLength(18);
 
             builder.Property(lp => lp.CorporateReason)
                    .IsRequired()
