@@ -135,6 +135,32 @@ namespace KemiaBridge.Infra.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "step",
+                columns: table => new
+                {
+                    StepId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    StationId = table.Column<int>(type: "integer", nullable: false),
+                    StationId1 = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_step", x => x.StepId);
+                    table.ForeignKey(
+                        name: "FK_step_station_StationId",
+                        column: x => x.StationId,
+                        principalTable: "station",
+                        principalColumn: "StationId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_step_station_StationId1",
+                        column: x => x.StationId1,
+                        principalTable: "station",
+                        principalColumn: "StationId");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_person_AddressId",
                 table: "person",
@@ -151,6 +177,16 @@ namespace KemiaBridge.Infra.Data.Migrations
                 table: "station",
                 column: "AddressId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_step_StationId",
+                table: "step",
+                column: "StationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_step_StationId1",
+                table: "step",
+                column: "StationId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -165,10 +201,13 @@ namespace KemiaBridge.Infra.Data.Migrations
                 name: "physic_person");
 
             migrationBuilder.DropTable(
-                name: "station");
+                name: "step");
 
             migrationBuilder.DropTable(
                 name: "person");
+
+            migrationBuilder.DropTable(
+                name: "station");
 
             migrationBuilder.DropTable(
                 name: "address");

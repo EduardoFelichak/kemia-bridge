@@ -18,7 +18,7 @@ namespace KemiaBridge.Infra.Data.Configurators.Models
             builder.Property(s => s.Name)
                 .IsRequired()
                 .HasMaxLength(20);
-
+                
             builder.HasOne<Station>()
                 .WithMany()
                 .HasForeignKey(s => s.StationId)
