@@ -46,7 +46,7 @@ namespace KemiaBridge.Infra.Data.Repository
             }
         }
 
-        public async Task<User?> SignIn(string email, string password)
+        public async Task<User?> SignInAsync(string email, string password)
         {
             return await _context.Users
                 .FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
