@@ -142,8 +142,7 @@ namespace KemiaBridge.Infra.Data.Migrations
                     StepId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    StationId = table.Column<int>(type: "integer", nullable: false),
-                    StationId1 = table.Column<int>(type: "integer", nullable: true)
+                    StationId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -154,11 +153,6 @@ namespace KemiaBridge.Infra.Data.Migrations
                         principalTable: "station",
                         principalColumn: "StationId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_step_station_StationId1",
-                        column: x => x.StationId1,
-                        principalTable: "station",
-                        principalColumn: "StationId");
                 });
 
             migrationBuilder.CreateIndex(
@@ -182,11 +176,6 @@ namespace KemiaBridge.Infra.Data.Migrations
                 name: "IX_step_StationId",
                 table: "step",
                 column: "StationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_step_StationId1",
-                table: "step",
-                column: "StationId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

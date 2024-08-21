@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KemiaBridge.Infra.Data.Migrations
 {
     [DbContext(typeof(ConnectionContext))]
-    [Migration("20240819224621_InitialCreate")]
+    [Migration("20240821123850_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -159,14 +159,9 @@ namespace KemiaBridge.Infra.Data.Migrations
                     b.Property<int>("StationId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("StationId1")
-                        .HasColumnType("integer");
-
                     b.HasKey("StepId");
 
                     b.HasIndex("StationId");
-
-                    b.HasIndex("StationId1");
 
                     b.ToTable("step", (string)null);
                 });
@@ -251,14 +246,10 @@ namespace KemiaBridge.Infra.Data.Migrations
             modelBuilder.Entity("KemiaBridge.Domain.Entities.Step", b =>
                 {
                     b.HasOne("KemiaBridge.Domain.Entities.Station", null)
-                        .WithMany()
+                        .WithMany("Steps")
                         .HasForeignKey("StationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("KemiaBridge.Domain.Entities.Station", null)
-                        .WithMany("Steps")
-                        .HasForeignKey("StationId1");
                 });
 
             modelBuilder.Entity("KemiaBridge.Domain.Entities.LegalPerson", b =>
