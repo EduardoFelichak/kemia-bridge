@@ -17,12 +17,12 @@ namespace KemiaBridgeApi.Controllers
             _addressService = addressService;
         }
 
-        [HttpPost("{id}")]
-        public async Task<IActionResult> Add(int id, StationFormDto formDto)
+        [HttpPost]
+        public async Task<IActionResult> Add(StationFormDto formDto)
         {
             await _addressService.AddAsync( formDto.Address! );
 
-            formDto.Station!.AddressId = formDto.Address!.AddressId;
+            formDto.Station!.SetAddressId(formDto.Address!.AddressId);
             await _stationService.AddAsync( formDto.Station );
 
             return Ok(new
