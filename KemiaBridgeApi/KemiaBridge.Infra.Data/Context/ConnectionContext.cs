@@ -14,6 +14,7 @@ namespace KemiaBridge.Infra.Data.Context
         public DbSet<PersonStation> PersonStations { get; set; } = null!;   
         public DbSet<Step> Steps { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Tank> Tanks { get; set; } = null!;
 
         public ConnectionContext(DbContextOptions<ConnectionContext> options) : base(options) { }
 
