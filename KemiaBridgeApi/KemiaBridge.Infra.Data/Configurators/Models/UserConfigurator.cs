@@ -32,6 +32,18 @@ namespace KemiaBridge.Infra.Data.Configurators.Models
 
             builder.Property(u => u.Phone)
                 .HasMaxLength(15);
+
+            builder.HasIndex(u => u.Name)
+                .IsUnique()
+                .HasDatabaseName("IX_User_Name");
+
+            builder.HasIndex(u => u.Email)
+                .IsUnique()
+                .HasDatabaseName("IX_User_Email");
+
+            builder.HasIndex(u => u.Phone)
+                .IsUnique()
+                .HasDatabaseName("IX_User_Phone");
         }
     }
 }
