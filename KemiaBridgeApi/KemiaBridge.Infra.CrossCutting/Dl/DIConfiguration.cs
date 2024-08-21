@@ -27,6 +27,8 @@ namespace KemiaBridge.Infra.CrossCutting.Dl
 
             services.AddScoped<IStepRepository, StepRepository>(); 
             services.AddScoped<IStepService, StepService>();
+
+            services.AddScoped<IUserRepository, UserRepository>();
         }
     }
 }
