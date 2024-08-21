@@ -15,6 +15,7 @@ namespace KemiaBridge.Infra.Data.Configurators
             modelBuilder.ApplyConfiguration(new PersonStationConfigurator());
             modelBuilder.ApplyConfiguration(new StepConfigurator());
             modelBuilder.ApplyConfiguration(new UserConfigurator());
+            modelBuilder.ApplyConfiguration(new TankConfigurator());
         }
     }
 }
