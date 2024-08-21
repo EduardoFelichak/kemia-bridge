@@ -15,6 +15,7 @@ namespace KemiaBridge.Service.Mappers
             services.AddAutoMapper(typeof(PersonStationProfile));
             services.AddAutoMapper(typeof(StepProfile));
             services.AddAutoMapper(typeof(UserProfile));
+            services.AddAutoMapper(typeof(TankProfile));
         }
 
         public static IMapper GetMapper<TProfile>() where TProfile : Profile, new()
