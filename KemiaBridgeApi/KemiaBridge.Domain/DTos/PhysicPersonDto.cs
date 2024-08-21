@@ -7,6 +7,6 @@ namespace KemiaBridge.Domain.DTos
         public string RegisterCode { get; set; } = string.Empty;
         public string SocialName { get; set; } = string.Empty;
         public DateTime BornAt { get; set; }
-        public GenderEnum Gender { get; set; }
+        public Gender Gender { get; set; }
     }
 }

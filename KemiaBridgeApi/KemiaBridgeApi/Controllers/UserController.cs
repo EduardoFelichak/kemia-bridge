@@ -67,7 +67,7 @@ namespace KemiaBridgeApi.Controllers
         }
 
         [HttpGet("/type/{userType}")]
-        public async Task<IActionResult> GetByType(UserTypeEnum userType)
+        public async Task<IActionResult> GetByType(UserType userType)
         {
             var usersByType = await _userService.GetByTypeAsync(userType);
             return Ok(usersByType);

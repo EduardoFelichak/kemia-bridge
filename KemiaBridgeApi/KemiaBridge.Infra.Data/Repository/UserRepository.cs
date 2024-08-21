@@ -53,7 +53,7 @@ namespace KemiaBridge.Infra.Data.Repository
                 .FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
         }
 
-        public async Task<IEnumerable<User>> GetByTypeAsync(UserTypeEnum userType)
+        public async Task<IEnumerable<User>> GetByTypeAsync(UserType userType)
         {
             return await _context.Users
                 .Where(u => u.Type == userType)

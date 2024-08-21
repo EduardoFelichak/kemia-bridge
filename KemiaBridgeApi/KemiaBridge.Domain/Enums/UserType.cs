@@ -1,6 +1,6 @@
 ﻿namespace KemiaBridge.Domain.Enums
 {
-    public enum UserTypeEnum
+    public enum UserType
     {
         Admin,
         Analyst,

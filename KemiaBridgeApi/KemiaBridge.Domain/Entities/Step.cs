@@ -12,6 +12,8 @@ namespace KemiaBridge.Domain.Entities
         [ForeignKey(nameof(Station))]
         public int StationId { get; private set; }
 
+        public ICollection<Tank> Tanks { get; set; }
+
         #pragma warning disable CS8618
         public Step() { }
 

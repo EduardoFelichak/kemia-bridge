@@ -57,7 +57,7 @@ namespace KemiaBridge.Service.Services
             return await _userRepository.SignInAsync(email, password);
         }
 
-        public async Task<IEnumerable<User>> GetByTypeAsync(UserTypeEnum userType)
+        public async Task<IEnumerable<User>> GetByTypeAsync(UserType userType)
         {
             return await _userRepository.GetByTypeAsync(userType);
         }

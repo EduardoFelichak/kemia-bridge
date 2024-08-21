@@ -9,7 +9,7 @@ namespace KemiaBridge.Service.Interface
         Task AddAsync(UserDto userDto);
         Task<IEnumerable<User>> GetAllAsync();
         Task<User?> GetByIdAsync(int id);
-        Task<IEnumerable<User>> GetByTypeAsync(UserTypeEnum userType);
+        Task<IEnumerable<User>> GetByTypeAsync(UserType userType);
         Task<User?> SignInAsync(string email, string password);
         Task UpdateAsync(int id, UserDto userDto);
         Task DeleteAsync(int id);
