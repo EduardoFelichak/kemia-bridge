@@ -30,6 +30,8 @@ namespace KemiaBridge.Infra.CrossCutting.Dl
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+
+            services.AddScoped<ITankRepository, TankRepository>();
         }
     }
 }
