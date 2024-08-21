@@ -1,4 +1,5 @@
 ﻿using KemiaBridge.Domain.Entities;
+using KemiaBridge.Domain.Enums;
 using KemiaBridge.Infra.Data.Context;
 using KemiaBridge.Infra.Data.Repository.Abstract;
 using Microsoft.EntityFrameworkCore;
@@ -50,6 +51,13 @@ namespace KemiaBridge.Infra.Data.Repository
         {
             return await _context.Users
                 .FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
+        }
+
+        public async Task<IEnumerable<User>> GetByTypeAsync(UserTypeEnum userType)
+        {
+            return await _context.Users
+                .Where(u => u.Type == userType)
+                .ToListAsync();
         }
     }
 }

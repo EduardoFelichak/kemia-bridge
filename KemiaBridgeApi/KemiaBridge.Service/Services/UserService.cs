@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using KemiaBridge.Domain.DTos;
 using KemiaBridge.Domain.Entities;
+using KemiaBridge.Domain.Enums;
 using KemiaBridge.Infra.Data.Repository.Abstract;
 using KemiaBridge.Service.Interface;
 using KemiaBridge.Service.Mappers;
@@ -54,6 +55,11 @@ namespace KemiaBridge.Service.Services
         public async Task<User?> SignInAsync(string email, string password)
         {
             return await _userRepository.SignInAsync(email, password);
+        }
+
+        public async Task<IEnumerable<User>> GetByTypeAsync(UserTypeEnum userType)
+        {
+            return await _userRepository.GetByTypeAsync(userType);
         }
     }
 }

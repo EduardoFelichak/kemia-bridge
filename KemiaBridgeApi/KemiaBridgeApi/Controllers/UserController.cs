@@ -1,6 +1,8 @@
 ﻿using KemiaBridge.Domain.DTos;
+using KemiaBridge.Domain.Enums;
 using KemiaBridge.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Abstractions;
 
 namespace KemiaBridgeApi.Controllers
 {
@@ -55,13 +57,20 @@ namespace KemiaBridgeApi.Controllers
             return NoContent();
         }
 
-        [HttpGet("{email};{password}")]
+        [HttpGet("/signin/{email};{password}")]
         public async Task<IActionResult> SignIn(string email, string password)
         {
             var user = await _userService.SignInAsync( email, password );
             if (user == null)
                 return NotFound("Invalid credentials");
             return Ok();
+        }
+
+        [HttpGet("/type/{userType}")]
+        public async Task<IActionResult> GetByType(UserTypeEnum userType)
+        {
+            var usersByType = await _userService.GetByTypeAsync(userType);
+            return Ok(usersByType);
         }
     }
 }
