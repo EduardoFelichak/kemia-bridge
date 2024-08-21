@@ -45,5 +45,11 @@ namespace KemiaBridge.Infra.Data.Repository
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task<User?> SignIn(string email, string password)
+        {
+            return await _context.Users
+                .FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
+        }
     }
 }
