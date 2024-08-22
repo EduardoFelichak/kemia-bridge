@@ -30,10 +30,7 @@ namespace KemiaBridgeApi.Controllers
         public async Task<IActionResult> AddMany(IEnumerable<StepDto> steps)
         {
             await _stepService.AddManyAsync(steps);
-            return Ok(new
-            {
-                stepId = steps.ElementAt(0).StepId,
-            });
+            return Ok(steps.Select(s => s.StationId));
         }
 
         [HttpGet("{id}")]
