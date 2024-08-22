@@ -43,6 +43,7 @@ namespace KemiaBridge.Service.Services
             var user = await _userRepository.GetByIdAsync(id);
             if (user == null)
                 throw new KeyNotFoundException($"User with Id {id} not found");
+            userDto.SetNewId(user.UserId);
             _mapper.Map(userDto, user);
             await _userRepository.UpdateAsync(user);
         }

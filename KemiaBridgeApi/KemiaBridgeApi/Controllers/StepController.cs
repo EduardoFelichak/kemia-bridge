@@ -1,4 +1,5 @@
 ﻿using KemiaBridge.Domain.DTos;
+using KemiaBridge.Domain.Entities;
 using KemiaBridge.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,6 +24,13 @@ namespace KemiaBridgeApi.Controllers
             {
                 stepId = stepDto.StepId,
             });
+        }
+
+        [HttpPost("/many")]
+        public async Task<IActionResult> AddMany(IEnumerable<StepDto> steps)
+        {
+            await _stepService.AddManyAsync(steps);
+            return Ok(steps.Select(s => s.StationId));
         }
 
         [HttpGet("{id}")]

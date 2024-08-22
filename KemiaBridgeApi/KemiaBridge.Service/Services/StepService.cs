@@ -16,7 +16,7 @@ namespace KemiaBridge.Service.Services
         public StepService(IStepRepository stepRepository)
         {
             _stepRepository = stepRepository;
-            _mapper         = MapperConfig.GetMapper<StationProfile>();
+            _mapper         = MapperConfig.GetMapper<StepProfile>();
         }
 
         public async Task AddAsync(StepDto stepDto)
@@ -47,6 +47,16 @@ namespace KemiaBridge.Service.Services
         public async Task DeleteAsync(int id)
         {
             await _stepRepository.DeleteAsync( id );
+        }
+
+        public async Task AddManyAsync(IEnumerable<StepDto> stepsDto)
+        {
+            foreach (var stepDto in stepsDto)
+            {
+                var step = _mapper.Map<Step>(stepDto);
+                await _stepRepository.AddAsync(step);
+                stepDto.SetNewId(step.StepId);
+            }
         }
     }
 }
