@@ -13,6 +13,7 @@ namespace KemiaBridge.Domain.Entities
         public int StationId { get; private set; }
 
         public ICollection<Tank> Tanks { get; set; }
+        public ICollection<Blower> Blowers { get; set; }
 
         #pragma warning disable CS8618
         public Step() { }
