@@ -141,6 +141,29 @@ namespace KemiaBridge.Infra.Data.Migrations
                     b.ToTable("station", (string)null);
                 });
 
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.Step", b =>
+                {
+                    b.Property<int>("StepId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("StepId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<int>("StationId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("StepId");
+
+                    b.HasIndex("StationId");
+
+                    b.ToTable("step", (string)null);
+                });
+
             modelBuilder.Entity("KemiaBridge.Domain.Entities.LegalPerson", b =>
                 {
                     b.HasBaseType("KemiaBridge.Domain.Entities.Person");
@@ -218,6 +241,15 @@ namespace KemiaBridge.Infra.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.Step", b =>
+                {
+                    b.HasOne("KemiaBridge.Domain.Entities.Station", null)
+                        .WithMany("Steps")
+                        .HasForeignKey("StationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("KemiaBridge.Domain.Entities.LegalPerson", b =>
                 {
                     b.HasOne("KemiaBridge.Domain.Entities.Person", null)
@@ -244,6 +276,8 @@ namespace KemiaBridge.Infra.Data.Migrations
             modelBuilder.Entity("KemiaBridge.Domain.Entities.Station", b =>
                 {
                     b.Navigation("PersonStations");
+
+                    b.Navigation("Steps");
                 });
 #pragma warning restore 612, 618
         }
