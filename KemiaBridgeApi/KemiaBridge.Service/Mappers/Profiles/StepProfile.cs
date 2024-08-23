@@ -8,8 +8,10 @@ namespace KemiaBridge.Service.Mappers.Profiles
     {
         public StepProfile() 
         {
-            CreateMap<Step, StepDto>();
-            CreateMap<StepDto, Step>();
+            CreateMap<Step, StepDto>()
+                .ForMember(dest => dest.StepId, opt => opt.Ignore());
+            CreateMap<StepDto, Step>()
+                .ForMember(dest => dest.StepId, opt => opt.Ignore());
         }
     }
 }
