@@ -30,20 +30,10 @@ namespace KemiaBridge.Infra.Data.Repository
             return await _context.PersonStations.FindAsync(id);
         }
 
-        public async Task UpdateAsync(PersonStation personStation)
+        public async Task DeleteAsync(PersonStation personStation)
         {
-            _context.PersonStations.Update(personStation);
-            await _context.SaveChangesAsync();  
-        }
-
-        public async Task DeleteAsync(int id)
-        {
-            var personStation = await _context.PersonStations.FindAsync(id);
-            if (personStation != null)
-            {
-                _context.PersonStations.Remove(personStation);
-                await _context.SaveChangesAsync();
-            }
+            _context.PersonStations.Remove(personStation);
+            await _context.SaveChangesAsync();
         }
     }
 }

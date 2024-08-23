@@ -1,4 +1,5 @@
 ﻿using KemiaBridge.Domain.DTos;
+using KemiaBridge.Domain.Entities;
 using KemiaBridge.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,6 +43,13 @@ namespace KemiaBridgeApi.Controllers
             return Ok(step);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var steps = await _stepService.GetAllAsync();
+            return Ok(steps);
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, StepDto stepDto)
         {
@@ -54,6 +62,13 @@ namespace KemiaBridgeApi.Controllers
         {
             await _stepService.DeleteAsync(id);
             return NoContent();
+        }
+
+        [HttpPost("/many")]
+        public async Task<IActionResult> AddMany(IEnumerable<StepDto> steps)
+        {
+            await _stepService.AddManyAsync(steps);
+            return Ok(steps.Select(s => s.StationId));
         }
     }
 }

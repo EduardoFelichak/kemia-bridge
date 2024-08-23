@@ -12,7 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KemiaBridge.Infra.Data.Migrations
 {
     [DbContext(typeof(ConnectionContext))]
+<<<<<<<< HEAD:KemiaBridgeApi/KemiaBridge.Infra.Data/Migrations/20240813123144_InitialCreate.Designer.cs
     [Migration("20240813123144_InitialCreate")]
+========
+    [Migration("20240821123850_InitialCreate")]
+>>>>>>>> 8a47b15165dc025932bc027cab9b7ecff920f5db:KemiaBridgeApi/KemiaBridge.Infra.Data/Migrations/20240821123850_InitialCreate.Designer.cs
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

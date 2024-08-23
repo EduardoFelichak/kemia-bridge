@@ -4,12 +4,12 @@ using KemiaBridge.Domain.Entities;
 
 namespace KemiaBridge.Service.Mappers.Profiles
 {
-    public class StepProfile : Profile
+    public class UserProfile : Profile
     {
-        public StepProfile() 
+        public UserProfile() 
         {
-            CreateMap<Step, StepDto>();
-            CreateMap<StepDto, Step>();
+            CreateMap<User, UserDto>();
+            CreateMap<UserDto, User>();
         }
     }
 }

@@ -18,10 +18,20 @@ namespace KemiaBridge.Infra.Data.Configurators.Models
             builder.Property(s => s.Name)
                 .IsRequired()
                 .HasMaxLength(20);
-
+                
             builder.HasOne<Station>()
                 .WithMany(s => s.Steps)
                 .HasForeignKey(s => s.StationId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(s => s.Tanks)
+                .WithOne()
+                .HasForeignKey(t => t.TankId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(s => s.Blowers)
+                .WithOne()
+                .HasForeignKey(b => b.BlowerId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace KemiaBridge.Domain.Enums
 {
-    public enum GenderEnum
+    public enum Gender
     {
         Male        = 0,
         Female      = 1,
