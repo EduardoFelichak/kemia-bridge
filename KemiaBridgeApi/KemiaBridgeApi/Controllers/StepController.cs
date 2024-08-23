@@ -43,13 +43,6 @@ namespace KemiaBridgeApi.Controllers
             return Ok(step);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var steps = await _stepService.GetAllAsync();
-            return Ok(steps);
-        }
-
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, StepDto stepDto)
         {
