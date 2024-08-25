@@ -11,7 +11,7 @@ namespace KemiaBridge.Service.Mappers.Profiles
             CreateMap<User, UserDto>()
                 .ForMember(dest => dest.UserId, opt => opt.Ignore());
             CreateMap<UserDto, User>()
-                .ForMember(dest => dest.UserId, opt => opt.Ignore());
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
         }
     }
 }

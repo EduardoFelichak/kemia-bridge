@@ -33,8 +33,17 @@ namespace KemiaBridge.Infra.Data.Repository
 
         public async Task UpdateAsync(User user)
         {
-            _context.Users.Update(user);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("error: " + e.Message);
+            }
+            
         }
 
         public async Task DeleteAsync(int id)
