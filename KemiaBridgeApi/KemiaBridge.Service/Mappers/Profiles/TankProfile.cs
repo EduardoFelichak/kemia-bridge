@@ -7,11 +7,10 @@ namespace KemiaBridge.Service.Mappers.Profiles
     public class TankProfile : Profile
     {
         public TankProfile() 
-        { 
-            CreateMap<Tank, TankDto>()
-                .ForMember(dest => dest.TankId, opt => opt.Ignore());
+        {
             CreateMap<TankDto, Tank>()
-                .ForMember(dest => dest.TankId, opt => opt.Ignore());
+                .ForMember(dest => dest.TankId, opt => opt.Ignore())
+                .IgnoreNullSourceValues();
         }
     }
 }

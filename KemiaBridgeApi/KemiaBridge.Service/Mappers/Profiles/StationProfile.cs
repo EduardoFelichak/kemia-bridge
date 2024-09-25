@@ -8,10 +8,9 @@ namespace KemiaBridge.Service.Mappers.Profiles
     {
         public StationProfile() 
         {
-            CreateMap<Station, StationDto>()
-                .ForMember(dest => dest.StationId, opt => opt.Ignore());
             CreateMap<StationDto, Station>()
-                .ForMember(dest => dest.StationId, opt => opt.Ignore());
+                .ForMember(dest => dest.StationId, opt => opt.Ignore())
+                .IgnoreNullSourceValues();
         }
     }
 }

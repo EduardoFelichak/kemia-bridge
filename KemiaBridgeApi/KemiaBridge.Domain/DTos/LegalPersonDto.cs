@@ -2,7 +2,7 @@
 {
     public class LegalPersonDto : PersonDto
     {
-        public string FederalRegister { get; set; } = string.Empty;
-        public string CorporateReason { get; set; } = string.Empty;
+        public string FederalRegister { get; set; } = null!;
+        public string CorporateReason { get; set; } = null!;
     }
 }

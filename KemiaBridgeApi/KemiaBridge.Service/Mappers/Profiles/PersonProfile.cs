@@ -8,23 +8,19 @@ namespace KemiaBridge.Service.Mappers.Profiles
     {
         public PersonProfile()
         {
-            CreateMap<Person, PersonDto>()
-                .ForMember(dest => dest.PersonId, opt => opt.Ignore());
-            CreateMap<PhysicPerson, PhysicPersonDto>()
-                .IncludeBase<Person, PersonDto>()
-                .ForMember(dest => dest.PersonId, opt => opt.Ignore());
-            CreateMap<LegalPerson, LegalPersonDto>()
-                .IncludeBase<Person, PersonDto>()
-                .ForMember(dest => dest.PersonId, opt => opt.Ignore());
-
             CreateMap<PersonDto, Person>()
-                .ForMember(dest => dest.PersonId, opt => opt.Ignore());
+                .ForMember(dest => dest.PersonId, opt => opt.Ignore())
+                .IgnoreNullSourceValues();
+
             CreateMap<PhysicPersonDto, PhysicPerson>()
                 .IncludeBase<PersonDto, Person>()
-                .ForMember(dest => dest.PersonId, opt => opt.Ignore());
+                .ForMember(dest => dest.PersonId, opt => opt.Ignore())
+                .IgnoreNullSourceValues();
+
             CreateMap<LegalPersonDto, LegalPerson>()
                 .IncludeBase<PersonDto, Person>()
-                .ForMember(dest => dest.PersonId, opt => opt.Ignore());
+                .ForMember(dest => dest.PersonId, opt => opt.Ignore())
+                .IgnoreNullSourceValues();
         }
     }
 }

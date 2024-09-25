@@ -3,7 +3,7 @@
     public class StationDto
     {
         public int StationId { get; private set; }
-        public string? Name { get; set; }
+        public string Name { get; set; } = null!;
         public DateTime OperationDate { get; set; }
         public int AddressId { get; private set; }
 

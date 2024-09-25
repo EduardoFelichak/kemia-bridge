@@ -8,7 +8,6 @@ namespace KemiaBridge.Service.Mappers.Profiles
     {
         public PersonStationProfile() 
         {
-            CreateMap<PersonStation, PersonStationDto>();
             CreateMap<PersonStationDto, PersonStation>();
         }
     }

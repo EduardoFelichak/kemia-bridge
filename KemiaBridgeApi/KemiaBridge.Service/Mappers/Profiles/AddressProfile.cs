@@ -9,7 +9,8 @@ namespace KemiaBridge.Service.Mappers.Profiles
         public AddressProfile() 
         {
             CreateMap<AddressDto, Address>()
-                .ForMember(dest => dest.AddressId, opt => opt.Ignore());
+                .ForMember(dest => dest.AddressId, opt => opt.Ignore())
+                .IgnoreNullSourceValues();
         }
     }
 }

@@ -3,8 +3,8 @@
     public class SqueezerDto
     {
         public int SqueezerId { get; private set; }
-        public string? Tag { get; set; } 
-        public string? Description { get; set; }
+        public string Tag { get; set; } = null!;     
+        public string Description { get; set; } = null!;    
         public int StepId { get; set; }
 
         public void SetNewId(int id)

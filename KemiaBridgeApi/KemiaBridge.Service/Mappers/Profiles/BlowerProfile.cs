@@ -8,10 +8,9 @@ namespace KemiaBridge.Service.Mappers.Profiles
     {
         public BlowerProfile() 
         {
-            CreateMap<Blower, BlowerDto>()
-                .ForMember(dest => dest.BlowerId, opt => opt.Ignore());
             CreateMap<BlowerDto, Blower>()
-                .ForMember(dest => dest.BlowerId, opt => opt.Ignore());
+                .ForMember(dest => dest.BlowerId, opt => opt.Ignore())
+                .IgnoreNullSourceValues();
         }
     }
 }
