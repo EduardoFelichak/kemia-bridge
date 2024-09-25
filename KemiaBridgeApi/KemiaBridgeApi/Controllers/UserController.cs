@@ -2,7 +2,6 @@
 using KemiaBridge.Domain.Enums;
 using KemiaBridge.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Abstractions;
 
 namespace KemiaBridgeApi.Controllers
 {
