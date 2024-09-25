@@ -3,25 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KemiaBridgeApi", "KemiaBridgeApi\KemiaBridgeApi.csproj", "{E02FB1E6-E267-485B-AF95-E31D927EDE56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KemiaBridgeApi", "KemiaBridgeApi\KemiaBridgeApi.csproj", "{E02FB1E6-E267-485B-AF95-E31D927EDE56}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Application", "1 - Application", "{39B46FEA-F008-4BC2-9E64-E3B085FC77C4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", "{2E2989DC-7B32-4D72-80C9-DB570DBA0970}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KemiaBridge.Domain", "KemiaBridge.Domain\KemiaBridge.Domain.csproj", "{24A82995-73CC-46EA-BBFE-50BC95EFFCB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KemiaBridge.Domain", "KemiaBridge.Domain\KemiaBridge.Domain.csproj", "{24A82995-73CC-46EA-BBFE-50BC95EFFCB7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Service", "3 - Service", "{78636EBA-7793-419B-AD36-199F46813EAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KemiaBridge.Service", "KemiaBridge.Service\KemiaBridge.Service.csproj", "{E3778983-9376-4A4B-9233-A6CD0BC0FF16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KemiaBridge.Service", "KemiaBridge.Service\KemiaBridge.Service.csproj", "{E3778983-9376-4A4B-9233-A6CD0BC0FF16}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infra", "4 - Infra", "{8B035FF4-EB26-40DF-80BA-F7240FF56FF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KemiaBridge.Infra.CrossCutting", "KemiaBridge.Infra.CrossCutting\KemiaBridge.Infra.CrossCutting.csproj", "{3B0E4A38-AE68-4324-8EBD-E209D641D9C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KemiaBridge.Infra.CrossCutting", "KemiaBridge.Infra.CrossCutting\KemiaBridge.Infra.CrossCutting.csproj", "{3B0E4A38-AE68-4324-8EBD-E209D641D9C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KemiaBridge.Infra.CrossCutting.Ioc", "KemiaBridge.Infra.CrossCutting.Ioc\KemiaBridge.Infra.CrossCutting.Ioc.csproj", "{4245BC43-A072-4AC1-8906-D3DEAA0D20BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KemiaBridge.Infra.CrossCutting.Ioc", "KemiaBridge.Infra.CrossCutting.Ioc\KemiaBridge.Infra.CrossCutting.Ioc.csproj", "{4245BC43-A072-4AC1-8906-D3DEAA0D20BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KemiaBridge.Infra.Data", "KemiaBridge.Infra.Data\KemiaBridge.Infra.Data.csproj", "{C872EFF5-05FB-4F01-8043-2BF7A6B1CBF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KemiaBridge.Infra.Data", "KemiaBridge.Infra.Data\KemiaBridge.Infra.Data.csproj", "{C872EFF5-05FB-4F01-8043-2BF7A6B1CBF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
