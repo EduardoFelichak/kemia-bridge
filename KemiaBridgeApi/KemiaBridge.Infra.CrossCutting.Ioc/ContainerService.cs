@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using KemiaBridge.Service.Helpers;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace KemiaBridge.Infra.CrossCutting.Ioc
 {
@@ -27,14 +28,14 @@ namespace KemiaBridge.Infra.CrossCutting.Ioc
                 x.DefaultChallengeScheme    = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(x =>
             {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
+                x.RequireHttpsMetadata      = false;
+                x.SaveToken                 = true;
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Key.Secret())),
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
+                    IssuerSigningKey         = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Key.Secret())),
+                    ValidateIssuer           = false,
+                    ValidateAudience         = false,
                 };
             });
         }
