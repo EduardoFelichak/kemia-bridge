@@ -12,7 +12,7 @@ namespace KemiaBridge.Service.Services
     {
         private readonly IStationRepository _stationRepository;
         private readonly IMapper           _mapper;
-
+            
         public StationService(IStationRepository stationRepository)
         {
             _stationRepository = stationRepository;
