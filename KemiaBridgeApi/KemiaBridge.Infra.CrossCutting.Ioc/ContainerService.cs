@@ -1,14 +1,13 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using KemiaBridge.Infra.CrossCutting.Dl;
-using KemiaBridge.Service.Mappers;
+﻿using KemiaBridge.Infra.CrossCutting.Dl;
 using KemiaBridge.Infra.Data.Context;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using KemiaBridge.Service.Helpers;
+using KemiaBridge.Service.Mappers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.Extensions.Logging;
 
 namespace KemiaBridge.Infra.CrossCutting.Ioc
 {

@@ -18,6 +18,7 @@ namespace KemiaBridge.Infra.Data.Configurators
             modelBuilder.ApplyConfiguration(new TankConfigurator());
             modelBuilder.ApplyConfiguration(new BlowerConfigurator());
             modelBuilder.ApplyConfiguration(new SqueezerConfigurator());
+            modelBuilder.ApplyConfiguration(new ActivityConfigurator());
         }
     }
 }

@@ -44,6 +44,11 @@ namespace KemiaBridge.Infra.Data.Configurators.Models
             builder.HasIndex(u => u.Phone)
                 .IsUnique()
                 .HasDatabaseName("IX_User_Phone");
+
+            builder.HasMany(u => u.Activities)
+                .WithOne()
+                .HasForeignKey(a => a.ActivityId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
