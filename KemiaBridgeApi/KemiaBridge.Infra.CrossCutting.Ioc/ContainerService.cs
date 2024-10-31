@@ -1,12 +1,12 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using KemiaBridge.Infra.CrossCutting.Dl;
-using KemiaBridge.Service.Mappers;
+﻿using KemiaBridge.Infra.CrossCutting.Dl;
 using KemiaBridge.Infra.Data.Context;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using KemiaBridge.Service.Helpers;
+using KemiaBridge.Service.Mappers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 namespace KemiaBridge.Infra.CrossCutting.Ioc
@@ -27,14 +27,14 @@ namespace KemiaBridge.Infra.CrossCutting.Ioc
                 x.DefaultChallengeScheme    = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(x =>
             {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
+                x.RequireHttpsMetadata      = false;
+                x.SaveToken                 = true;
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Key.Secret())),
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
+                    IssuerSigningKey         = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Key.Secret())),
+                    ValidateIssuer           = false,
+                    ValidateAudience         = false,
                 };
             });
         }

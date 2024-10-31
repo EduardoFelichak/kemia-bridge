@@ -58,17 +58,14 @@ namespace KemiaBridgeApi.Controllers
         }
 
         [HttpPost("/auth")]
-        public async Task<IActionResult> SignIn([FromBody] string email, string password)
+        public async Task<IActionResult> SignIn(string email, string password)
         {
             var user = await _userService.SignInAsync( email, password );
 
             if (user == null)
                 return NotFound("Invalid credentials");
     
-            return Ok(new
-            {
-                token = TokenService.GenerateToken(user),
-            });
+            return Ok(TokenService.GenerateToken(user));
         }
 
         [HttpGet("/type/{userType}")]

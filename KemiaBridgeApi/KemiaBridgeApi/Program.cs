@@ -1,6 +1,5 @@
 using KemiaBridge.Infra.CrossCutting.Ioc;
 using Microsoft.OpenApi.Models;
-using System.Security.Cryptography.Xml;
 
 namespace KemiaBridgeApi
 {
@@ -14,14 +13,16 @@ namespace KemiaBridgeApi
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
+
             builder.Services.AddSwaggerGen(c =>
             {
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Name   = "Authorization",
-                    In     = ParameterLocation.Header,
-                    Type   = SecuritySchemeType.ApiKey,
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer",
+                    BearerFormat = "JWT"
                 });
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement()
@@ -32,11 +33,11 @@ namespace KemiaBridgeApi
                             Reference = new OpenApiReference
                             {
                                 Type = ReferenceType.SecurityScheme,
-                                Id   = "Bearer",
+                                Id = "Bearer"
                             },
                             Scheme = "oauth2",
-                            Name   = "Bearer",
-                            In     = ParameterLocation.Header,
+                            Name = "Bearer",
+                            In = ParameterLocation.Header,
                         },
                         new List<string>()
                     }
@@ -46,7 +47,7 @@ namespace KemiaBridgeApi
             ContainerService.RegisterServices(builder.Services, builder.Configuration);
 
             var app = builder.Build();
-        
+
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -55,11 +56,9 @@ namespace KemiaBridgeApi
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            app.RegisterMiddlewares();
 
             app.MapControllers();
-
-            app.RegisterMiddlewares();
 
             app.Run();
         }

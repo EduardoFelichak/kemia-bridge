@@ -1,6 +1,7 @@
 ﻿using KemiaBridge.Domain.DTos;
 using KemiaBridge.Service.Interface;
 using KemiaBridge.Service.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KemiaBridgeApi.Controllers
@@ -16,6 +17,7 @@ namespace KemiaBridgeApi.Controllers
             _physicPersonService = physicPersonService ?? throw new ArgumentNullException(nameof(physicPersonService));
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Add(PhysicPersonDto physicPersonDto)
         {
@@ -23,6 +25,7 @@ namespace KemiaBridgeApi.Controllers
             return CreatedAtAction(nameof(GetById), new { id = physicPersonDto.PersonId }, physicPersonDto);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -33,6 +36,7 @@ namespace KemiaBridgeApi.Controllers
             return Ok(physicPerson);
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -40,6 +44,7 @@ namespace KemiaBridgeApi.Controllers
             return Ok(physicPeople);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, PhysicPersonDto physicPersonDto)
         {
@@ -47,6 +52,7 @@ namespace KemiaBridgeApi.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {

@@ -20,7 +20,7 @@ namespace KemiaBridge.Infra.Data.Configurators.Models
 
             builder.Property(t => t.Tag)
                 .IsRequired()
-                .HasMaxLength(15);
+                .HasMaxLength(15);  
 
             builder.Property(t => t.Description)
                 .IsRequired()

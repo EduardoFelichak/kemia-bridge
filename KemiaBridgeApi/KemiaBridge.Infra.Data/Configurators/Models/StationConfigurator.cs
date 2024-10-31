@@ -31,6 +31,11 @@ namespace KemiaBridge.Infra.Data.Configurators.Models
                 .WithOne(s => s.Station)
                 .HasForeignKey(s => s.StationId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(a => a.Activities)
+                .WithOne()
+                .HasForeignKey(s => s.StationId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

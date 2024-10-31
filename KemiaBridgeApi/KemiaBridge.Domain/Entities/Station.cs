@@ -15,6 +15,7 @@ namespace KemiaBridge.Domain.Entities
 
         public ICollection<Step> Steps { get; set; }
         public ICollection<PersonStation> PersonStations { get; set; }
+        public ICollection<Activity> Activities { get; set; }
 
         #pragma warning disable CS8618
         public Station() { }
