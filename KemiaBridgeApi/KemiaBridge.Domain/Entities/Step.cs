@@ -11,6 +11,7 @@ namespace KemiaBridge.Domain.Entities
         public string Name { get; private set; }
         [ForeignKey(nameof(Station))]
         public int StationId { get; private set; }
+        public Station Station { get; private set; }
 
         public ICollection<Tank> Tanks { get; set; }
         public ICollection<Blower> Blowers { get; set; }

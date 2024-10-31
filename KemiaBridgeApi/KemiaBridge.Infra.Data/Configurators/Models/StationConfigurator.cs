@@ -28,7 +28,7 @@ namespace KemiaBridge.Infra.Data.Configurators.Models
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(s => s.Steps)
-                .WithOne()
+                .WithOne(s => s.Station)
                 .HasForeignKey(s => s.StationId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
