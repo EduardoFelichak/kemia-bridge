@@ -129,6 +129,36 @@ namespace KemiaBridge.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "activity",
+                columns: table => new
+                {
+                    ActivityId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Title = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: false),
+                    Priority = table.Column<int>(type: "integer", nullable: false),
+                    LimitDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Status = table.Column<int>(type: "integer", nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    StationId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_activity", x => x.ActivityId);
+                    table.ForeignKey(
+                        name: "FK_activity_station_StationId",
+                        column: x => x.StationId,
+                        principalTable: "station",
+                        principalColumn: "StationId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_activity_user_UserId",
+                        column: x => x.UserId,
+                        principalTable: "user",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "person_station",
                 columns: table => new
                 {
@@ -193,6 +223,27 @@ namespace KemiaBridge.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "squeezer",
+                columns: table => new
+                {
+                    SqueezerId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Tag = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
+                    Description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
+                    StepId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_squeezer", x => x.SqueezerId);
+                    table.ForeignKey(
+                        name: "FK_squeezer_step_StepId",
+                        column: x => x.StepId,
+                        principalTable: "step",
+                        principalColumn: "StepId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "tank",
                 columns: table => new
                 {
@@ -215,6 +266,16 @@ namespace KemiaBridge.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_activity_StationId",
+                table: "activity",
+                column: "StationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_activity_UserId",
+                table: "activity",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_person_AddressId",
                 table: "person",
                 column: "AddressId",
@@ -224,6 +285,11 @@ namespace KemiaBridge.Infra.Data.Migrations
                 name: "IX_person_station_StationId",
                 table: "person_station",
                 column: "StationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_squeezer_StepId",
+                table: "squeezer",
+                column: "StepId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_station_AddressId",
@@ -263,6 +329,9 @@ namespace KemiaBridge.Infra.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "activity");
+
+            migrationBuilder.DropTable(
                 name: "blower");
 
             migrationBuilder.DropTable(
@@ -273,6 +342,9 @@ namespace KemiaBridge.Infra.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "physic_person");
+
+            migrationBuilder.DropTable(
+                name: "squeezer");
 
             migrationBuilder.DropTable(
                 name: "tank");

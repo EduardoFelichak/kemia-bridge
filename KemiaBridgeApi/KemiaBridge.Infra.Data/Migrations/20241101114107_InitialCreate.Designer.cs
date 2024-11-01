@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KemiaBridge.Infra.Data.Migrations
 {
     [DbContext(typeof(ConnectionContext))]
-    [Migration("20240823124720_InitialCreate")]
+    [Migration("20241101114107_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,43 @@ namespace KemiaBridge.Infra.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.Activity", b =>
+                {
+                    b.Property<int>("ActivityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ActivityId"));
+
+                    b.Property<DateTime>("LimitDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("StationId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("character varying(40)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ActivityId");
+
+                    b.HasIndex("StationId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("activity", (string)null);
+                });
 
             modelBuilder.Entity("KemiaBridge.Domain.Entities.Address", b =>
                 {
@@ -138,6 +175,34 @@ namespace KemiaBridge.Infra.Data.Migrations
                     b.HasIndex("StationId");
 
                     b.ToTable("person_station", (string)null);
+                });
+
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.Squeezer", b =>
+                {
+                    b.Property<int>("SqueezerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("SqueezerId"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<int>("StepId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Tag")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("character varying(15)");
+
+                    b.HasKey("SqueezerId");
+
+                    b.HasIndex("StepId");
+
+                    b.ToTable("squeezer", (string)null);
                 });
 
             modelBuilder.Entity("KemiaBridge.Domain.Entities.Station", b =>
@@ -309,6 +374,21 @@ namespace KemiaBridge.Infra.Data.Migrations
                     b.ToTable("physic_person", (string)null);
                 });
 
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.Activity", b =>
+                {
+                    b.HasOne("KemiaBridge.Domain.Entities.Station", null)
+                        .WithMany("Activities")
+                        .HasForeignKey("StationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KemiaBridge.Domain.Entities.User", null)
+                        .WithMany("Activities")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("KemiaBridge.Domain.Entities.Blower", b =>
                 {
                     b.HasOne("KemiaBridge.Domain.Entities.Step", null)
@@ -346,22 +426,35 @@ namespace KemiaBridge.Infra.Data.Migrations
                     b.Navigation("Station");
                 });
 
-            modelBuilder.Entity("KemiaBridge.Domain.Entities.Station", b =>
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.Squeezer", b =>
                 {
-                    b.HasOne("KemiaBridge.Domain.Entities.Address", null)
-                        .WithOne()
-                        .HasForeignKey("KemiaBridge.Domain.Entities.Station", "AddressId")
+                    b.HasOne("KemiaBridge.Domain.Entities.Step", null)
+                        .WithMany("Squeezers")
+                        .HasForeignKey("StepId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.Station", b =>
+                {
+                    b.HasOne("KemiaBridge.Domain.Entities.Address", "Address")
+                        .WithOne()
+                        .HasForeignKey("KemiaBridge.Domain.Entities.Station", "AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+                });
+
             modelBuilder.Entity("KemiaBridge.Domain.Entities.Step", b =>
                 {
-                    b.HasOne("KemiaBridge.Domain.Entities.Station", null)
+                    b.HasOne("KemiaBridge.Domain.Entities.Station", "Station")
                         .WithMany("Steps")
                         .HasForeignKey("StationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Station");
                 });
 
             modelBuilder.Entity("KemiaBridge.Domain.Entities.Tank", b =>
@@ -398,6 +491,8 @@ namespace KemiaBridge.Infra.Data.Migrations
 
             modelBuilder.Entity("KemiaBridge.Domain.Entities.Station", b =>
                 {
+                    b.Navigation("Activities");
+
                     b.Navigation("PersonStations");
 
                     b.Navigation("Steps");
@@ -407,7 +502,14 @@ namespace KemiaBridge.Infra.Data.Migrations
                 {
                     b.Navigation("Blowers");
 
+                    b.Navigation("Squeezers");
+
                     b.Navigation("Tanks");
+                });
+
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.User", b =>
+                {
+                    b.Navigation("Activities");
                 });
 #pragma warning restore 612, 618
         }
