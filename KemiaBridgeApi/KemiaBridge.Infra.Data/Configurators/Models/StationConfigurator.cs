@@ -22,7 +22,7 @@ namespace KemiaBridge.Infra.Data.Configurators.Models
             builder.Property(s => s.OperationDate)
                 .IsRequired();
 
-            builder.HasOne<Address>()
+            builder.HasOne<Address>(s => s.Address)
                 .WithOne()
                 .HasForeignKey<Station>(s => s.AddressId)
                 .OnDelete(DeleteBehavior.Cascade);

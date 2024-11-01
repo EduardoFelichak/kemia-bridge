@@ -12,6 +12,7 @@ namespace KemiaBridge.Domain.Entities
         public DateTime OperationDate { get; private set; }
         [ForeignKey(nameof(Address))]
         public int AddressId { get; private set; }
+        public Address Address { get; private set; }
 
         public ICollection<Step> Steps { get; set; }
         public ICollection<PersonStation> PersonStations { get; set; }

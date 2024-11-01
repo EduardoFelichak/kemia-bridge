@@ -19,7 +19,7 @@ namespace KemiaBridge.Infra.Data.Configurators.Models
                 .IsRequired()
                 .HasMaxLength(20);
                 
-            builder.HasOne<Station>()
+            builder.HasOne<Station>(s => s.Station)
                 .WithMany(s => s.Steps)
                 .HasForeignKey(s => s.StationId)
                 .OnDelete(DeleteBehavior.Cascade);

@@ -15,7 +15,7 @@ namespace KemiaBridge.Domain.Entities
         [ForeignKey(nameof(User))]
         public int UserId { get; private set; }
         [ForeignKey(nameof(Station))]
-        public int StationId { get; private set; }-
+        public int StationId { get; private set; }
 
         #pragma warning disable CS8618
         public Activity() { }
