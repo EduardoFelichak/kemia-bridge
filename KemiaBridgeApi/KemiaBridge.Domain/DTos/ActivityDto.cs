@@ -14,10 +14,5 @@
         {
             ActivityId = id;
         }
-
-        public void SetStationId(int id) 
-        { 
-            StationId = id; 
-        }
     }
 }
