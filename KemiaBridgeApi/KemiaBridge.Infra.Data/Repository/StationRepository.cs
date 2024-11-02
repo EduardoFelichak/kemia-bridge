@@ -25,14 +25,16 @@ namespace KemiaBridge.Infra.Data.Repository
             return await _context.Stations
                                  .Include(s => s.Address)
                                  .Include(s => s.Steps)
+                                    .ThenInclude(step => step.Tanks)
                                  .ToListAsync();
         }
 
         public async Task<Station?> GetByIdAsync(int id)
         {
             return await _context.Stations
-                                 .Include (s => s.Address)
+                                 .Include(s => s.Address)
                                  .Include(s => s.Steps)
+                                    .ThenInclude(step => step.Tanks)
                                  .FirstOrDefaultAsync(s => s.StationId == id); 
         }
 
