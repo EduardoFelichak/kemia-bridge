@@ -8,7 +8,7 @@
         public DateTime LimitDate { get; set; }
         public int Status { get; set; }
         public int UserId { get; set; }
-        public int StationId { get; private set; }
+        public int StationId { get; set; }
 
         public void SetNewId(int id)
         {
