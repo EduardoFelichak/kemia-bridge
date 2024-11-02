@@ -16,9 +16,10 @@ namespace KemiaBridgeApi.Controllers
             _stepService = stepService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Add(StepDto stepDto)
+        [HttpPost("stationId")]
+        public async Task<IActionResult> Add(int stationId, StepDto stepDto)
         {
+            stepDto.SetStationId(stationId);
             await _stepService.AddAsync(stepDto);
             return Ok(new
             {

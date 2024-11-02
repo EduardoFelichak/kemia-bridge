@@ -9,6 +9,7 @@ namespace KemiaBridge.Domain.Entities
         [Key]
         public int StepId { get; private set; }
         public string Name { get; private set; }
+        public string Icon { get; private set; }
         [ForeignKey(nameof(Station))]
         public int StationId { get; private set; }
         public Station Station { get; private set; }

@@ -30,13 +30,7 @@ namespace KemiaBridgeApi.Controllers
 
             await _stationService.AddAsync( stationDto );
 
-            foreach (var step in stationDto.Steps)
-            {
-                step.StationId = stationDto.StationId;
-                await _stepService.AddAsync( step );
-            }
-
-            return Ok( stationDto );
+            return Ok(await _stationService.GetByIdAsync(stationDto.StationId) );
         }
 
         [HttpGet("{id}")]
