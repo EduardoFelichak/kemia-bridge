@@ -8,11 +8,16 @@ namespace KemiaBridge.Domain.DTos
         public TankType Type { get; set; }
         public string Tag { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public int StepId { get; set; }
+        public int StepId { get; private set; }
 
         public void SetNewId(int id)
         {
             TankId = id;
+        }
+
+        public void SetStepId(int id)
+        {
+            StepId = id; 
         }
     }
 }
