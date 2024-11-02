@@ -41,6 +41,7 @@ namespace KemiaBridge.Infra.CrossCutting.Dl
             services.AddScoped<ISqueezerService, SqueezerService>();
 
             services.AddScoped<IActivityRepository, ActivityRepository>();
+            services.AddScoped<IActivityService, ActivityService>();
         }
     }
 }

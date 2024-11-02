@@ -8,11 +8,16 @@
         public DateTime LimitDate { get; set; }
         public int Status { get; set; }
         public int UserId { get; set; }
-        public int StationId { get; set; }
+        public int StationId { get; private set; }
 
         public void SetNewId(int id)
         {
             ActivityId = id;
+        }
+
+        public void SetStationId(int id) 
+        { 
+            StationId = id; 
         }
     }
 }

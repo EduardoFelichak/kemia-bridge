@@ -7,7 +7,7 @@
         public DateTime OperationDate { get; set; }
         public AddressDto? Address { get; set; }
         private int AddressId { get; set; }
-        public ICollection<StepDto> Steps { get; set; }
+        public ICollection<StepDto>? Steps { get; set; }
 
         public void SetNewId(int id)
         {
