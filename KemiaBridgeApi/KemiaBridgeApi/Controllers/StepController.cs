@@ -57,12 +57,5 @@ namespace KemiaBridgeApi.Controllers
             await _stepService.DeleteAsync(id);
             return NoContent();
         }
-
-        [HttpPost("/many")]
-        public async Task<IActionResult> AddMany(IEnumerable<StepDto> steps)
-        {
-            await _stepService.AddManyAsync(steps);
-            return Ok(steps.Select(s => s.StationId));
-        }
     }
 }
