@@ -34,7 +34,7 @@ namespace KemiaBridgeApi.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             var station = await _stationService.GetByIdAsync( id );
-            if ( station != null )
+            if ( station == null )
                 return NotFound();
 
             return Ok( station );

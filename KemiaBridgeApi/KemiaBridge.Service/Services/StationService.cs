@@ -26,7 +26,7 @@ namespace KemiaBridge.Service.Services
             stationDto.SetNewId(station.StationId);
         }
 
-        public async Task<IEnumerable<StationDto>> GetAllAsync()
+        public async Task<IEnumerable<StationDto?>> GetAllAsync()
         {
             var stations = await _stationRepository.GetAllAsync();
 

@@ -6,7 +6,7 @@
         public string Name { get; set; } = null!;
         public DateTime OperationDate { get; set; }
         public AddressDto? Address { get; set; }
-        public int AddressId { get; private set; }
+        private int AddressId { get; set; }
 
         public void SetNewId(int id)
         {
