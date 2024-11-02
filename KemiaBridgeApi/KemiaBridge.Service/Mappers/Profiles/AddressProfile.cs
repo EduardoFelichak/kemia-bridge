@@ -11,6 +11,8 @@ namespace KemiaBridge.Service.Mappers.Profiles
             CreateMap<AddressDto, Address>()
                 .ForMember(dest => dest.AddressId, opt => opt.Ignore())
                 .IgnoreNullSourceValues();
+
+            CreateMap<Address, AddressDto>();   
         }
     }
 }

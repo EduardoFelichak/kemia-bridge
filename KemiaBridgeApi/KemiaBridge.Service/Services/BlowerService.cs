@@ -16,7 +16,7 @@ namespace KemiaBridge.Service.Services
         public BlowerService(IBlowerRepository blowerRepository, IMapper mapper)
         {
             _blowerRepository = blowerRepository;
-            _mapper           = MapperConfig.GetMapper<BlowerProfile>();
+            _mapper           = mapper;
         }
 
         public async Task AddAsync(BlowerDto blowerDto)

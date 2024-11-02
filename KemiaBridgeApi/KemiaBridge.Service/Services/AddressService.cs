@@ -13,10 +13,10 @@ namespace KemiaBridge.Service.Services
         private readonly IAddressRepository _addressRepository;
         private readonly IMapper _mapper;
 
-        public AddressService(IAddressRepository addressRepository) 
+        public AddressService(IAddressRepository addressRepository, IMapper mapper) 
         {
             _addressRepository = addressRepository;
-            _mapper = MapperConfig.GetMapper<AddressProfile>();
+            _mapper            = mapper;
         }
 
         public async Task AddAsync(AddressDto addressDto)

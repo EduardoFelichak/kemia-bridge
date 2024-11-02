@@ -17,7 +17,7 @@ namespace KemiaBridge.Service.Services
         public TankService(ITankRepository tankRepository, IMapper mapper)
         {
             _tankRepository = tankRepository;
-            _mapper         = MapperConfig.GetMapper<TankProfile>();
+            _mapper         = mapper;
         }
 
         public async Task AddAsync(TankDto tankDto)

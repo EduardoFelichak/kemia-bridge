@@ -17,7 +17,7 @@ namespace KemiaBridge.Service.Services
         public UserService(IUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
-            _mapper = MapperConfig.GetMapper<UserProfile>();
+            _mapper         = mapper;
         }
 
         public async Task AddAsync(UserDto userDto)

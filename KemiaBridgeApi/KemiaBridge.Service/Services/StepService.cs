@@ -18,10 +18,10 @@ namespace KemiaBridge.Service.Services
         private readonly IStepRepository _stepRepository;
         private readonly IMapper         _mapper;
 
-        public StepService(IStepRepository stepRepository)
+        public StepService(IStepRepository stepRepository, IMapper mapper)
         {
             _stepRepository = stepRepository;
-            _mapper         = MapperConfig.GetMapper<StepProfile>();
+            _mapper         = mapper;
         }
 
         public async Task AddAsync(StepDto stepDto)

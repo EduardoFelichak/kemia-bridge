@@ -13,10 +13,10 @@ namespace KemiaBridge.Service.Services
         private readonly ISqueezerRepository _squeezerRepository;
         private readonly IMapper             _mapper;
 
-        public SqueezerService(ISqueezerRepository squeezerRepository)
+        public SqueezerService(ISqueezerRepository squeezerRepository, IMapper mapper)
         {
             _squeezerRepository = squeezerRepository;
-            _mapper             = MapperConfig.GetMapper<SqueezerProfile>();
+            _mapper             = mapper;
         }
 
         public async Task AddAsync(SqueezerDto squeezerDto)

@@ -22,12 +22,15 @@ namespace KemiaBridge.Infra.Data.Repository
 
         public async Task<IEnumerable<Station>> GetAllAsync()
         {
-            return await _context.Stations.ToListAsync();
+            return await _context.Stations
+                                 .Include(s => s.Address)
+                                 .ToListAsync();
         }
 
         public async Task<Station?> GetByIdAsync(int id)
         {
             return await _context.Stations
+                                 .Include (s => s.Address)
                                  .FirstOrDefaultAsync(s => s.StationId == id); 
         }
 

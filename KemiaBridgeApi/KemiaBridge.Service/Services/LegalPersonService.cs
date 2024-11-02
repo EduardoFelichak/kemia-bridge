@@ -13,10 +13,10 @@ namespace KemiaBridge.Service.Services
         private readonly ILegalPersonRepository _legalPersonRepository;
         private readonly IMapper _mapper;
 
-        public LegalPersonService(ILegalPersonRepository legalPersonRepository)
+        public LegalPersonService(ILegalPersonRepository legalPersonRepository, IMapper mapper)
         {
             _legalPersonRepository = legalPersonRepository;
-            _mapper = MapperConfig.GetMapper<PersonProfile>();
+            _mapper                = mapper;
         }
 
         public async Task AddAsync(LegalPersonDto legalPersonDto)

@@ -13,10 +13,10 @@ namespace KemiaBridge.Service.Services
         private readonly IStationRepository _stationRepository;
         private readonly IMapper           _mapper;
             
-        public StationService(IStationRepository stationRepository)
+        public StationService(IStationRepository stationRepository, IMapper mapper)
         {
             _stationRepository = stationRepository;
-            _mapper            = MapperConfig.GetMapper<StationProfile>();
+            _mapper            = mapper;
         }
 
         public async Task AddAsync(StationDto stationDto)
@@ -26,14 +26,20 @@ namespace KemiaBridge.Service.Services
             stationDto.SetNewId(station.StationId);
         }
 
-        public Task<IEnumerable<Station>> GetAllAsync()
+        public async Task<IEnumerable<StationDto>> GetAllAsync()
         {
-            return _stationRepository.GetAllAsync();
+            var stations = await _stationRepository.GetAllAsync();
+
+            var stationDtos = _mapper.Map<List<StationDto>>(stations);
+
+            return stationDtos.AsEnumerable();
         }
 
-        public async Task<Station?> GetByIdAsync(int id)
+        public async Task<StationDto?> GetByIdAsync(int id)
         {
-            return await _stationRepository.GetByIdAsync( id );
+            var station = await _stationRepository.GetByIdAsync( id );
+
+            return _mapper.Map<StationDto>(station);
         }
 
         public async Task UpdateAsync(int id, StationDto stationDto)

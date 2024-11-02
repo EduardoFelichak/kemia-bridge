@@ -13,10 +13,10 @@ namespace KemiaBridge.Service.Services
         private readonly IPhysicPersonRepository _physicPersonRepository;
         private readonly IMapper _mapper;
 
-        public PhysicPersonService(IPhysicPersonRepository physicPersonRepository)
+        public PhysicPersonService(IPhysicPersonRepository physicPersonRepository, IMapper mapper)
         {
             _physicPersonRepository = physicPersonRepository;
-            _mapper = MapperConfig.GetMapper<PersonProfile>();
+            _mapper = mapper;
         }
 
         public async Task AddAsync(PhysicPersonDto physicPersonDto)

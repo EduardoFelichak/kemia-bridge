@@ -9,24 +9,14 @@ namespace KemiaBridge.Service.Mappers
     {
         public static void RegisterMappings(this IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(AddressProfile));
-            services.AddAutoMapper(typeof(PersonProfile));  
-            services.AddAutoMapper(typeof(StationProfile));
+            services.AddAutoMapper(typeof(AddressProfile      ));
+            services.AddAutoMapper(typeof(PersonProfile       ));  
+            services.AddAutoMapper(typeof(StationProfile      ));
             services.AddAutoMapper(typeof(PersonStationProfile));
-            services.AddAutoMapper(typeof(StepProfile));
-            services.AddAutoMapper(typeof(UserProfile));
-            services.AddAutoMapper(typeof(TankProfile));
-            services.AddAutoMapper(typeof(BlowerProfile));
-        }
-
-        public static IMapper GetMapper<TProfile>() where TProfile : Profile, new()
-        {
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile<TProfile>();
-            });
-
-            return config.CreateMapper();
+            services.AddAutoMapper(typeof(StepProfile         ));
+            services.AddAutoMapper(typeof(UserProfile         ));
+            services.AddAutoMapper(typeof(TankProfile         ));
+            services.AddAutoMapper(typeof(BlowerProfile       ));
         }
     }
 }

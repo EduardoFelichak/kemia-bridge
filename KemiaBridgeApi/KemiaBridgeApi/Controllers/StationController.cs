@@ -9,15 +9,23 @@ namespace KemiaBridgeApi.Controllers
     public class StationController : ControllerBase
     {
         private readonly IStationService _stationService;
-
-        public StationController(IStationService stationService)
+        private readonly IAddressService _addressService;
+            
+        public StationController(IStationService stationService, IAddressService addressService)
         {
             _stationService = stationService;
+            _addressService = addressService;
         }
 
         [HttpPost]
         public async Task<IActionResult> Add(StationDto stationDto)
         {
+            if (stationDto.Address == null)
+                return BadRequest("Endereço precisa ser informado");
+
+            await _addressService.AddAsync( stationDto.Address );
+            stationDto.SetAddressId(stationDto.Address.AddressId);
+
             await _stationService.AddAsync( stationDto );
             return Ok( stationDto );
         }
@@ -35,7 +43,8 @@ namespace KemiaBridgeApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var stations = await _stationService.GetAllAsync();
+            var stations = await _stationService.GetAllAsync(); 
+
             return Ok( stations );
         }
 

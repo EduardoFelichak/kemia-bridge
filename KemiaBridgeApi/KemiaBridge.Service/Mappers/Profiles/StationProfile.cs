@@ -10,7 +10,12 @@ namespace KemiaBridge.Service.Mappers.Profiles
         {
             CreateMap<StationDto, Station>()
                 .ForMember(dest => dest.StationId, opt => opt.Ignore())
+                .ForMember(dest => dest.Address, opt => opt.Ignore())
+                .ForMember(dest => dest.AddressId, opt => opt.MapFrom(src => src.AddressId))
                 .IgnoreNullSourceValues();
+
+            CreateMap<Station, StationDto>()
+            .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address));
         }
     }
 }
