@@ -11,6 +11,8 @@ namespace KemiaBridge.Service.Mappers.Profiles
             CreateMap<StepDto, Step>()
                 .ForMember(dest => dest.StepId, opt => opt.Ignore())
                 .IgnoreNullSourceValues();
+
+            CreateMap<Step, StepDto>();
         }
     }
 }

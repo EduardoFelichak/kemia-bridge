@@ -24,6 +24,7 @@ namespace KemiaBridge.Infra.Data.Repository
         {
             return await _context.Stations
                                  .Include(s => s.Address)
+                                 .Include(s => s.Steps)
                                  .ToListAsync();
         }
 
@@ -31,6 +32,7 @@ namespace KemiaBridge.Infra.Data.Repository
         {
             return await _context.Stations
                                  .Include (s => s.Address)
+                                 .Include(s => s.Steps)
                                  .FirstOrDefaultAsync(s => s.StationId == id); 
         }
 
