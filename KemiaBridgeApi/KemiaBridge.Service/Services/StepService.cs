@@ -31,14 +31,20 @@ namespace KemiaBridge.Service.Services
             stepDto.SetNewId( step.StepId );
         }
 
-        public Task<IEnumerable<Step>> GetAllAsync()
+        public async Task<IEnumerable<StepDto>> GetAllAsync()
         {
-            return _stepRepository.GetAllAsync();
+            var steps = await _stepRepository.GetAllAsync();
+
+            var stepDtos = _mapper.Map<List<StepDto>>(steps);
+
+            return stepDtos.AsEnumerable();
         }
 
-        public async Task<Step?> GetByIdAsync(int id)
+        public async Task<StepDto?> GetByIdAsync(int id)
         {
-            return await _stepRepository.GetByIdAsync( id );
+            var step = await _stepRepository.GetByIdAsync( id );
+
+            return _mapper.Map<StepDto>(step);
         }
 
         public async Task UpdateAsync(int id, StepDto stepDto)

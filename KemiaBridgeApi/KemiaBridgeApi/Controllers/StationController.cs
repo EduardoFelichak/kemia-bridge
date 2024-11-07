@@ -10,11 +10,13 @@ namespace KemiaBridgeApi.Controllers
     {
         private readonly IStationService _stationService;
         private readonly IAddressService _addressService;
+        private readonly IStepService    _stepService;
             
-        public StationController(IStationService stationService, IAddressService addressService)
+        public StationController(IStationService stationService, IAddressService addressService, IStepService stepService)
         {
             _stationService = stationService;
             _addressService = addressService;
+            _stepService    = stepService;
         }
 
         [HttpPost]
@@ -27,14 +29,15 @@ namespace KemiaBridgeApi.Controllers
             stationDto.SetAddressId(stationDto.Address.AddressId);
 
             await _stationService.AddAsync( stationDto );
-            return Ok( stationDto );
+
+            return Ok(await _stationService.GetByIdAsync(stationDto.StationId) );
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var station = await _stationService.GetByIdAsync( id );
-            if ( station != null )
+            if ( station == null )
                 return NotFound();
 
             return Ok( station );

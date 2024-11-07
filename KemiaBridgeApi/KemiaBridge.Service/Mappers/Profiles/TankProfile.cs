@@ -11,6 +11,8 @@ namespace KemiaBridge.Service.Mappers.Profiles
             CreateMap<TankDto, Tank>()
                 .ForMember(dest => dest.TankId, opt => opt.Ignore())
                 .IgnoreNullSourceValues();
+
+            CreateMap<Tank, TankDto>();
         }
     }
 }

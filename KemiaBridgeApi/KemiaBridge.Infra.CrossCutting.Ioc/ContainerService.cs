@@ -16,7 +16,7 @@ namespace KemiaBridge.Infra.CrossCutting.Ioc
         public static void RegisterServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ConnectionContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")!));
+                options.UseNpgsql(configuration.GetConnectionString("KBridge")!));
 
             services.AddScopedConfig();
             services.RegisterMappings();

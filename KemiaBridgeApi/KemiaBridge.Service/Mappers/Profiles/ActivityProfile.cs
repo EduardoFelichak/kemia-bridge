@@ -4,16 +4,16 @@ using KemiaBridge.Domain.Entities;
 
 namespace KemiaBridge.Service.Mappers.Profiles
 {
-    public class StepProfile : Profile
+    public class ActivityProfile : Profile
     {
-        public StepProfile() 
-        {
-            CreateMap<StepDto, Step>()
-                .ForMember(dest => dest.StepId, opt => opt.Ignore())
+        public ActivityProfile() 
+        { 
+            CreateMap<ActivityDto, Activity>()
+                .ForMember(dest => dest.ActivityId, opt => opt.Ignore())
                 .ForMember(dest => dest.StationId, opt => opt.Ignore())
                 .IgnoreNullSourceValues();
 
-            CreateMap<Step, StepDto>();
+            CreateMap<Activity, ActivityDto>();
         }
     }
 }

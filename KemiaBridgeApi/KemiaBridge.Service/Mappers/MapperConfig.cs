@@ -17,6 +17,7 @@ namespace KemiaBridge.Service.Mappers
             services.AddAutoMapper(typeof(UserProfile         ));
             services.AddAutoMapper(typeof(TankProfile         ));
             services.AddAutoMapper(typeof(BlowerProfile       ));
+            services.AddAutoMapper(typeof(ActivityProfile     ));
         }
     }
 }

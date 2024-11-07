@@ -18,6 +18,10 @@ namespace KemiaBridge.Infra.Data.Configurators.Models
             builder.Property(s => s.Name)
                 .IsRequired()
                 .HasMaxLength(20);
+
+            builder.Property(s => s.Icon)
+                .IsRequired()
+                .HasMaxLength(20);
                 
             builder.HasOne<Station>(s => s.Station)
                 .WithMany(s => s.Steps)

@@ -16,9 +16,10 @@ namespace KemiaBridgeApi.Controllers
             _tankService = tankService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Add(TankDto tankDto)
+        [HttpPost("{stepId}")]
+        public async Task<IActionResult> Add(int stepId, TankDto tankDto)
         {
+            tankDto.SetStepId(stepId);
             await _tankService.AddAsync( tankDto );
             return Ok(new
             {
