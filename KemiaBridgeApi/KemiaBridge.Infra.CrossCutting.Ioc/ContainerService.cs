@@ -37,6 +37,20 @@ namespace KemiaBridge.Infra.CrossCutting.Ioc
                     ValidateAudience         = false,
                 };
             });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy
+                (
+                    name: "KemiaBridgePolicy",
+                    policy =>
+                    {
+                        policy.AllowAnyOrigin()
+                              .AllowAnyHeader()
+                              .AllowAnyMethod();
+                    }
+                );
+            });
         }
     }
 }
