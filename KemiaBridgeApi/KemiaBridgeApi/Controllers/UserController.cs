@@ -3,6 +3,7 @@ using KemiaBridge.Domain.Enums;
 using KemiaBridge.Service.Helpers;
 using KemiaBridge.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace KemiaBridgeApi.Controllers
 {
@@ -18,9 +19,9 @@ namespace KemiaBridgeApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(UserDto userDto)
+        public async Task<IActionResult> Add([FromBody] UserDto userDto)
         {
-            await _userService.AddAsync( userDto );
+            await _userService.AddAsync(userDto);
             return Ok(new
             {
                 userId = userDto.UserId,
@@ -37,38 +38,38 @@ namespace KemiaBridgeApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var user = await _userService.GetByIdAsync( id );
+            var user = await _userService.GetByIdAsync(id);
             if (user == null)
                 return NotFound();
             return Ok(user);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, UserDto userDto)
+        public async Task<IActionResult> Update(int id, [FromBody] UserDto userDto)
         {
-            await _userService.UpdateAsync( id, userDto );
+            await _userService.UpdateAsync(id, userDto);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _userService.DeleteAsync( id );
+            await _userService.DeleteAsync(id);
             return NoContent();
         }
 
-        [HttpPost("/auth")]
-        public async Task<IActionResult> SignIn(string email, string password)
+        [HttpPost("auth")]
+        public async Task<IActionResult> SignIn([FromQuery] string email, [FromQuery] string password)
         {
-            var user = await _userService.SignInAsync( email, password );
+            var user = await _userService.SignInAsync(email, password);
 
             if (user == null)
                 return NotFound("Invalid credentials");
-    
+
             return Ok(TokenService.GenerateToken(user));
         }
 
-        [HttpGet("/type/{userType}")]
+        [HttpGet("type/{userType}")]
         public async Task<IActionResult> GetByType(UserType userType)
         {
             var usersByType = await _userService.GetByTypeAsync(userType);

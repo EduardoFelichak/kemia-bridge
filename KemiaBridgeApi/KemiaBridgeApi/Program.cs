@@ -12,6 +12,17 @@ namespace KemiaBridgeApi
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
 
+            // Configuração do CORS - ajusta conforme necessário
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.AllowAnyOrigin() // Use AllowAnyOrigin() para acesso aberto, mas em produção é melhor especificar as origens permitidas
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                });
+            });
+
             builder.Services.AddSwaggerGen(c =>
             {
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -53,6 +64,9 @@ namespace KemiaBridgeApi
             }
 
             app.UseHttpsRedirection();
+
+            // Adicione o middleware CORS
+            app.UseCors("CorsPolicy");
 
             app.RegisterMiddlewares();
 
