@@ -74,7 +74,7 @@ namespace KemiaBridge.Infra.Data.Migrations
                     StationId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    OperationDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    OperationDate = table.Column<DateOnly>(type: "date", nullable: false),
                     AddressId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -189,6 +189,7 @@ namespace KemiaBridge.Infra.Data.Migrations
                     StepId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    Icon = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     StationId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>

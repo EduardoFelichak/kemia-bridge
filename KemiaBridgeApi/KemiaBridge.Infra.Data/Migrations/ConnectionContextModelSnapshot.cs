@@ -219,8 +219,8 @@ namespace KemiaBridge.Infra.Data.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)");
 
-                    b.Property<DateTime>("OperationDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("OperationDate")
+                        .HasColumnType("date");
 
                     b.HasKey("StationId");
 

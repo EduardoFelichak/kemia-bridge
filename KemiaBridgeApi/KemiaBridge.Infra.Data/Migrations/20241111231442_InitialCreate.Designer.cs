@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KemiaBridge.Infra.Data.Migrations
 {
     [DbContext(typeof(ConnectionContext))]
-    [Migration("20241102042758_AddIconPropertyInStep")]
-    partial class AddIconPropertyInStep
+    [Migration("20241111231442_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -221,8 +221,8 @@ namespace KemiaBridge.Infra.Data.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)");
 
-                    b.Property<DateTime>("OperationDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("OperationDate")
+                        .HasColumnType("date");
 
                     b.HasKey("StationId");
 

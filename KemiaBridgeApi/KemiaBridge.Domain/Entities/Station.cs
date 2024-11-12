@@ -9,7 +9,7 @@ namespace KemiaBridge.Domain.Entities
         [Key]
         public int StationId { get; private set; }
         public string Name { get; private set; }
-        public DateTime OperationDate { get; private set; }
+        public DateOnly OperationDate { get; private set; }
         [ForeignKey(nameof(Address))]
         public int AddressId { get; private set; }
         public Address Address { get; private set; }
@@ -21,7 +21,7 @@ namespace KemiaBridge.Domain.Entities
         #pragma warning disable CS8618
         public Station() { }
 
-        public Station(int stationId, string name, DateTime operationDate, int personId, int addressId)
+        public Station(int stationId, string name, DateOnly operationDate, int personId, int addressId)
         {
             StationId     = stationId;
             Name          = name;

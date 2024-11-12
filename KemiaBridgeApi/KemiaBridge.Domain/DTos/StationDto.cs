@@ -4,7 +4,7 @@
     {
         public int StationId { get; private set; }
         public string Name { get; set; } = null!;
-        public DateTime OperationDate { get; set; }
+        public DateOnly OperationDate { get; set; }
         public AddressDto? Address { get; set; }
         private int AddressId { get; set; }
         public ICollection<StepDto>? Steps { get; set; }
