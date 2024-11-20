@@ -42,7 +42,7 @@ namespace KemiaBridge.Service.Services
             return _mapper.Map<StationDto>(station);
         }
 
-        public async Task UpdateAsync(int id, StationDto stationDto)
+        public async Task UpdateAsync(int id, SmpStationDto stationDto)
         {
             var station = await _stationRepository.GetByIdAsync( id );
             if (station == null)

@@ -52,7 +52,7 @@ namespace KemiaBridgeApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, StationDto stationDto)
+        public async Task<IActionResult> Update(int id, SmpStationDto stationDto)
         {
             await _stationService.UpdateAsync( id, stationDto );
             return NoContent();

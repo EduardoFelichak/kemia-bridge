@@ -19,4 +19,11 @@
             AddressId = id;
         }
     }
+
+    public class SmpStationDto
+    {
+        public int StationId { get; private set; }
+        public string Name { get; set; } = null!;
+        public DateOnly OperationDate { get; set; }
+    }
 }
