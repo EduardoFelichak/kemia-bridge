@@ -8,7 +8,7 @@ namespace KemiaBridge.Service.Interface
         Task AddAsync(StationDto stationDto);
         Task<IEnumerable<StationDto?>> GetAllAsync();
         Task<StationDto?> GetByIdAsync(int id);
-        Task UpdateAsync(int id, StationDto stationDto);
+        Task UpdateAsync(int id, SmpStationDto stationDto);
         Task DeleteAsync(int id);
     }
 }

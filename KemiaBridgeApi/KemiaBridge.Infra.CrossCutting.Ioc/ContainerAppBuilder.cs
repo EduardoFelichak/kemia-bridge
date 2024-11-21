@@ -29,6 +29,7 @@ namespace KemiaBridge.Infra.CrossCutting.Ioc
 
         public static IApplicationBuilder RegisterMiddlewares(this IApplicationBuilder builder)
         {
+            builder.UseCors("KemiaBridgePolicy");
             builder.UseExceptions();
             builder.UseAuthentication();
             builder.UseAuthorization();

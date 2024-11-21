@@ -6,7 +6,6 @@
         public string Name { get; set; } = null!;
         public string Icon { get; set; } = null!;
         public int StationId { get; private set; }
-        public ICollection<TankDto>? Tanks { get; set; }
 
         public void SetNewId(int id)
         {
