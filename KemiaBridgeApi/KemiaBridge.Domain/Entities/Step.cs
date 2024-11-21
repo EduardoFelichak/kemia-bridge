@@ -17,6 +17,7 @@ namespace KemiaBridge.Domain.Entities
         public ICollection<Tank> Tanks { get; set; }
         public ICollection<Blower> Blowers { get; set; }
         public ICollection<Squeezer> Squeezers { get; set; }
+        public ICollection<Sensor> Sensors { get; set; }
 
         #pragma warning disable CS8618
         public Step() { }

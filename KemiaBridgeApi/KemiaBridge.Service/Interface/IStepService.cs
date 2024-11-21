@@ -10,7 +10,7 @@ namespace KemiaBridge.Service.Interface
 {
     public interface IStepService
     {
-        Task AddAsync(StepDto stepDto);
+        Task AddAsync(StepDto stepDto); 
         Task AddManyAsync(IEnumerable<StepDto> steps);
         Task<IEnumerable<StepDto>> GetAllAsync();
         Task<StepDto?> GetByIdAsync(int id);

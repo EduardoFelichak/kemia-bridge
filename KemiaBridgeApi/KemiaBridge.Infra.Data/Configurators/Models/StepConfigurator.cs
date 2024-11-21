@@ -33,6 +33,11 @@ namespace KemiaBridge.Infra.Data.Configurators.Models
                 .HasForeignKey(t => t.TankId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            builder.HasMany(s => s.Sensors)
+                .WithOne()
+                .HasForeignKey(s => s.Id)
+                .OnDelete(DeleteBehavior.Cascade);
+
             builder.HasMany(s => s.Blowers)
                 .WithOne()
                 .HasForeignKey(b => b.BlowerId)
