@@ -16,14 +16,14 @@ namespace KemiaBridgeApi.Controllers
             _sensorService = sensorService;
         }
 
-        [HttpPost("{sensorId}")]
+        [HttpPost("{stepId}")]
         public async Task<IActionResult> Add(int stepId, SensorDto sensorDto)
         {
             sensorDto.setStepId(stepId);
             await _sensorService.AddAsync(sensorDto);
             return Ok(new
             {
-                sensorId = sensorDto.Id,
+                sensorId = sensorDto.SensorId,
             });
         }
 

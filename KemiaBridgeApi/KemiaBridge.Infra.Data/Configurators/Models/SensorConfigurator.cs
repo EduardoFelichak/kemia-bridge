@@ -10,9 +10,9 @@ namespace KemiaBridge.Infra.Data.Configurators.Models
         {
             builder.ToTable("sensor");
 
-            builder.HasKey(s => s.Id);
+            builder.HasKey(s => s.SensorId);
 
-            builder.Property(s => s.Id)
+            builder.Property(s => s.SensorId)
                 .ValueGeneratedOnAdd();
 
             builder.Property(s => s.Type)
@@ -27,7 +27,7 @@ namespace KemiaBridge.Infra.Data.Configurators.Models
 
             builder.HasOne<Step>()
                 .WithMany(s => s.Sensors)
-                .HasForeignKey(s => s.Id)
+                .HasForeignKey(s => s.StepId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KemiaBridge.Infra.Data.Migrations
 {
     [DbContext(typeof(ConnectionContext))]
-    [Migration("20241111231442_InitialCreate")]
+    [Migration("20241122010220_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -175,6 +175,31 @@ namespace KemiaBridge.Infra.Data.Migrations
                     b.HasIndex("StationId");
 
                     b.ToTable("person_station", (string)null);
+                });
+
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.Sensor", b =>
+                {
+                    b.Property<int>("SensorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("StepId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Tag")
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .HasColumnType("character varying(5)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
+                    b.HasKey("SensorId");
+
+                    b.ToTable("sensor", (string)null);
                 });
 
             modelBuilder.Entity("KemiaBridge.Domain.Entities.Squeezer", b =>
@@ -431,6 +456,15 @@ namespace KemiaBridge.Infra.Data.Migrations
                     b.Navigation("Station");
                 });
 
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.Sensor", b =>
+                {
+                    b.HasOne("KemiaBridge.Domain.Entities.Step", null)
+                        .WithMany("Sensors")
+                        .HasForeignKey("SensorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("KemiaBridge.Domain.Entities.Squeezer", b =>
                 {
                     b.HasOne("KemiaBridge.Domain.Entities.Step", null)
@@ -506,6 +540,8 @@ namespace KemiaBridge.Infra.Data.Migrations
             modelBuilder.Entity("KemiaBridge.Domain.Entities.Step", b =>
                 {
                     b.Navigation("Blowers");
+
+                    b.Navigation("Sensors");
 
                     b.Navigation("Squeezers");
 

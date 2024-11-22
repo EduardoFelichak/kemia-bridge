@@ -35,7 +35,7 @@ namespace KemiaBridge.Infra.Data.Configurators.Models
 
             builder.HasMany(s => s.Sensors)
                 .WithOne()
-                .HasForeignKey(s => s.Id)
+                .HasForeignKey(s => s.SensorId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(s => s.Blowers)

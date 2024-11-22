@@ -224,6 +224,28 @@ namespace KemiaBridge.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "sensor",
+                columns: table => new
+                {
+                    SensorId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Type = table.Column<int>(type: "integer", nullable: false),
+                    Tag = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: false),
+                    Status = table.Column<int>(type: "integer", nullable: false),
+                    StepId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_sensor", x => x.SensorId);
+                    table.ForeignKey(
+                        name: "FK_sensor_step_StepId",
+                        column: x => x.StepId,
+                        principalTable: "step",
+                        principalColumn: "StepId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "squeezer",
                 columns: table => new
                 {
@@ -288,6 +310,11 @@ namespace KemiaBridge.Infra.Data.Migrations
                 column: "StationId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_sensor_StepId",
+                table: "sensor",
+                column: "StepId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_squeezer_StepId",
                 table: "squeezer",
                 column: "StepId");
@@ -343,6 +370,9 @@ namespace KemiaBridge.Infra.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "physic_person");
+
+            migrationBuilder.DropTable(
+                name: "sensor");
 
             migrationBuilder.DropTable(
                 name: "squeezer");

@@ -1,17 +1,17 @@
 ﻿using AutoMapper;
 using KemiaBridge.Domain.DTos;
 using KemiaBridge.Domain.Entities;
-using KemiaBridge.Infra.Data.Repository;
+using KemiaBridge.Infra.Data.Repository.Abstract;
 using KemiaBridge.Service.Interface;
 
 namespace KemiaBridge.Service.Services
 {
     public class SensorService : ISensorService
     {
-        private readonly SensorRepository _sensorRepository;
+        private readonly ISensorRepository _sensorRepository;
         private readonly IMapper _mapper;
 
-        public SensorService(SensorRepository sensorRepository, IMapper mapper) 
+        public SensorService(ISensorRepository sensorRepository, IMapper mapper) 
         {
             _sensorRepository = sensorRepository;
             _mapper = mapper;
@@ -21,7 +21,7 @@ namespace KemiaBridge.Service.Services
         {
             var sensor = _mapper.Map<Sensor>(sensorDto);
             await _sensorRepository.AddAsync(sensor);
-            sensorDto.setNewId(sensor.Id);
+            sensorDto.setNewId(sensor.SensorId);
         }
 
         public async Task DeleteAsync(int id)

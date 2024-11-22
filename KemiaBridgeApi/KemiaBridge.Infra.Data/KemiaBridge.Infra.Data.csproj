@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20241122010220_InitialCreate.cs" />
+    <Compile Remove="Migrations\20241122010220_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\ConnectionContextModelSnapshot.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Context\" />
     <Folder Include="Migrations\" />  
     <Folder Include="Seeds\" />

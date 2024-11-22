@@ -10,7 +10,7 @@ namespace KemiaBridge.Service.Mappers.Profiles
         public SensorProfile() 
         {
             CreateMap<SensorDto, Sensor>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.SensorId, opt => opt.Ignore())
                 .IgnoreNullSourceValues();
 
             CreateMap<Sensor, SensorDto>();
