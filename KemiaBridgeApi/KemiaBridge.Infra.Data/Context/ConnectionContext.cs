@@ -19,6 +19,7 @@ namespace KemiaBridge.Infra.Data.Context
         public DbSet<Squeezer> Squeezers { get; set; } = null!; 
         public DbSet<Activity> Activities { get; set; } = null!;
         public DbSet<Sensor> Sensors { get; set; } = null!;
+        public DbSet<SensorReading> SensorsReading { get; set; } = null!;
 
         public ConnectionContext(DbContextOptions<ConnectionContext> options) : base(options) { }
 

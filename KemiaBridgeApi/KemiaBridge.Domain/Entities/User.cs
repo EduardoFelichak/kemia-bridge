@@ -16,8 +16,9 @@ namespace KemiaBridge.Domain.Entities
         public string Phone { get; private set; }
 
         public ICollection<Activity> Activities { get; set; }
+        public ICollection<SensorReading> SensorReadings { get; set; }
 
-        #pragma warning disable CS8618
+#pragma warning disable CS8618
         public User() { }
 
         public User(int userId, UserType type, string name, string email, string password, string phone)

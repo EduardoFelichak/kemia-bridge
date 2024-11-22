@@ -14,6 +14,8 @@ namespace KemiaBridge.Domain.Entities
         [ForeignKey(nameof(Step))]
         public int StepId { get; private set; }
 
+        public ICollection<SensorReading> SensorReadings { get; set; }
+
         #pragma warning disable CS8618
 
         public Sensor() { }

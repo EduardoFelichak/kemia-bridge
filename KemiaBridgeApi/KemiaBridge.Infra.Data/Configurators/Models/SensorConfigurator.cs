@@ -29,6 +29,11 @@ namespace KemiaBridge.Infra.Data.Configurators.Models
                 .WithMany(s => s.Sensors)
                 .HasForeignKey(s => s.StepId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(s => s.SensorReadings)
+                .WithOne()
+                .HasForeignKey(s => s.SensorId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

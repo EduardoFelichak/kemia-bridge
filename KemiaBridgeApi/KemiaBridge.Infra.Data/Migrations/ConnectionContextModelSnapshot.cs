@@ -204,6 +204,35 @@ namespace KemiaBridge.Infra.Data.Migrations
                     b.ToTable("sensor", (string)null);
                 });
 
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.SensorReading", b =>
+                {
+                    b.Property<int>("SensorReadingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("SensorReadingId"));
+
+                    b.Property<double>("Data")
+                        .HasColumnType("double precision");
+
+                    b.Property<DateTime>("ReadingDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("SensorId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("SensorReadingId");
+
+                    b.HasIndex("SensorId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("sensor_reading");
+                });
+
             modelBuilder.Entity("KemiaBridge.Domain.Entities.Squeezer", b =>
                 {
                     b.Property<int>("SqueezerId")
@@ -467,6 +496,21 @@ namespace KemiaBridge.Infra.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.SensorReading", b =>
+                {
+                    b.HasOne("KemiaBridge.Domain.Entities.Sensor", null)
+                        .WithMany("SensorReadings")
+                        .HasForeignKey("SensorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KemiaBridge.Domain.Entities.User", null)
+                        .WithMany("SensorReadings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("KemiaBridge.Domain.Entities.Squeezer", b =>
                 {
                     b.HasOne("KemiaBridge.Domain.Entities.Step", null)
@@ -530,6 +574,11 @@ namespace KemiaBridge.Infra.Data.Migrations
                     b.Navigation("PersonStations");
                 });
 
+            modelBuilder.Entity("KemiaBridge.Domain.Entities.Sensor", b =>
+                {
+                    b.Navigation("SensorReadings");
+                });
+
             modelBuilder.Entity("KemiaBridge.Domain.Entities.Station", b =>
                 {
                     b.Navigation("Activities");
@@ -553,6 +602,8 @@ namespace KemiaBridge.Infra.Data.Migrations
             modelBuilder.Entity("KemiaBridge.Domain.Entities.User", b =>
                 {
                     b.Navigation("Activities");
+
+                    b.Navigation("SensorReadings");
                 });
 #pragma warning restore 612, 618
         }

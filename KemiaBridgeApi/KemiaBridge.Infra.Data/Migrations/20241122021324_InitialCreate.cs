@@ -288,6 +288,34 @@ namespace KemiaBridge.Infra.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "sensor_reading",
+                columns: table => new
+                {
+                    SensorReadingId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ReadingDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Data = table.Column<double>(type: "double precision", nullable: false),
+                    SensorId = table.Column<int>(type: "integer", nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_sensor_reading", x => x.SensorReadingId);
+                    table.ForeignKey(
+                        name: "FK_sensor_reading_sensor_SensorId",
+                        column: x => x.SensorId,
+                        principalTable: "sensor",
+                        principalColumn: "SensorId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_sensor_reading_user_UserId",
+                        column: x => x.UserId,
+                        principalTable: "user",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_activity_StationId",
                 table: "activity",
@@ -313,6 +341,16 @@ namespace KemiaBridge.Infra.Data.Migrations
                 name: "IX_sensor_StepId",
                 table: "sensor",
                 column: "StepId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_sensor_reading_SensorId",
+                table: "sensor_reading",
+                column: "SensorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_sensor_reading_UserId",
+                table: "sensor_reading",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_squeezer_StepId",
@@ -372,7 +410,7 @@ namespace KemiaBridge.Infra.Data.Migrations
                 name: "physic_person");
 
             migrationBuilder.DropTable(
-                name: "sensor");
+                name: "sensor_reading");
 
             migrationBuilder.DropTable(
                 name: "squeezer");
@@ -381,10 +419,13 @@ namespace KemiaBridge.Infra.Data.Migrations
                 name: "tank");
 
             migrationBuilder.DropTable(
-                name: "user");
+                name: "person");
 
             migrationBuilder.DropTable(
-                name: "person");
+                name: "sensor");
+
+            migrationBuilder.DropTable(
+                name: "user");
 
             migrationBuilder.DropTable(
                 name: "step");

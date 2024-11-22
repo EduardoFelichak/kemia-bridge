@@ -19,6 +19,7 @@ namespace KemiaBridge.Service.Mappers
             services.AddAutoMapper(typeof(BlowerProfile       ));
             services.AddAutoMapper(typeof(ActivityProfile     ));
             services.AddAutoMapper(typeof(SensorProfile       ));
+            services.AddAutoMapper(typeof(SensorReadingProfile));
         }
     }
 }

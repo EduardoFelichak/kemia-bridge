@@ -45,6 +45,9 @@ namespace KemiaBridge.Infra.CrossCutting.Dl
 
             services.AddScoped<ISensorRepository, SensorRepository>();
             services.AddScoped<ISensorService, SensorService>();
+
+            services.AddScoped<ISensorReadingRepository, SensorReadingRepository>();    
+            services.AddScoped<ISensorReadingService, SensorReadingService>();
         }
     }
 }
