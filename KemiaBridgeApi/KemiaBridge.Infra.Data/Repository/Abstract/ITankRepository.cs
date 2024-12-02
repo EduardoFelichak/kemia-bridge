@@ -9,6 +9,7 @@ namespace KemiaBridge.Infra.Data.Repository.Abstract
         Task<IEnumerable<Tank>> GetAllAsync();
         Task<Tank?> GetByIdAsync(int id);
         Task<IEnumerable<Tank>> GetByTypeAsync(TankType tankType);
+        Task<IEnumerable<Tank>> GetByStepAsync(int id);
         Task UpdateAsync(Tank tank);
         Task DeleteAsync(int id);
     }

@@ -41,6 +41,13 @@ namespace KemiaBridge.Infra.Data.Repository
             return await _context.Sensors.FindAsync(id);
         }
 
+        public async Task<IEnumerable<Sensor>> GetByStepAsync(int id)
+        {
+            return await _context.Sensors
+                                 .Where(s => s.StepId == id)
+                                 .ToListAsync();
+        }
+
         public async Task UpdateAsync(Sensor sensor)
         {
             _context.Sensors.Update(sensor);

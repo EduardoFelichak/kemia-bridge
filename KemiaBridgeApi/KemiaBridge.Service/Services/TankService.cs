@@ -2,6 +2,7 @@
 using KemiaBridge.Domain.DTos;
 using KemiaBridge.Domain.Entities;
 using KemiaBridge.Domain.Enums;
+using KemiaBridge.Infra.Data.Repository;
 using KemiaBridge.Infra.Data.Repository.Abstract;
 using KemiaBridge.Service.Interface;
 using KemiaBridge.Service.Mappers;
@@ -35,6 +36,11 @@ namespace KemiaBridge.Service.Services
         public async Task<Tank?> GetByIdAsync(int id)
         {
             return await _tankRepository.GetByIdAsync(id);
+        }
+
+        public async Task<IEnumerable<Tank>> GetByStepAsync(int id)
+        {
+            return await _tankRepository.GetByStepAsync(id);
         }
 
         public async Task<IEnumerable<Tank>> GetByTypeAsync(TankType tankType)

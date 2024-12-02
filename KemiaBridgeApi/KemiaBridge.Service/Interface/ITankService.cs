@@ -8,6 +8,7 @@ namespace KemiaBridge.Service.Interface
     {
         Task AddAsync(TankDto tankDto);
         Task<IEnumerable<Tank>> GetAllAsync();
+        Task<IEnumerable<Tank>> GetByStepAsync(int id);
         Task<Tank?> GetByIdAsync(int id);
         Task<IEnumerable<Tank>> GetByTypeAsync(TankType tankType);
         Task UpdateAsync(int id, TankDto tankDto);

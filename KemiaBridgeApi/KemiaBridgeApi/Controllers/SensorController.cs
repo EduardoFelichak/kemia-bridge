@@ -34,6 +34,13 @@ namespace KemiaBridgeApi.Controllers
             return Ok(sensors);
         }
 
+        [HttpGet("step/{id}")]
+        public async Task<IActionResult> GetByStep(int id)
+        {
+            var sensors = await _sensorService.GetByStepAsync(id);
+            return Ok(sensors);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {

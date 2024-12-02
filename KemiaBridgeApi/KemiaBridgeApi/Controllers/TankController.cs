@@ -1,6 +1,7 @@
 ﻿using KemiaBridge.Domain.DTos;
 using KemiaBridge.Domain.Enums;
 using KemiaBridge.Service.Interface;
+using KemiaBridge.Service.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KemiaBridgeApi.Controllers
@@ -31,6 +32,13 @@ namespace KemiaBridgeApi.Controllers
         public async Task<IActionResult> GetAll()
         {
             var tanks = await _tankService.GetAllAsync();
+            return Ok(tanks);
+        }
+
+        [HttpGet("step/{id}")]
+        public async Task<IActionResult> GetByStep(int id)
+        {
+            var tanks = await _tankService.GetByStepAsync(id);
             return Ok(tanks);
         }
 

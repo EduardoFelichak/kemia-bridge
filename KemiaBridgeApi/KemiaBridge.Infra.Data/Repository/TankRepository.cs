@@ -38,6 +38,13 @@ namespace KemiaBridge.Infra.Data.Repository
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<Tank>> GetByStepAsync(int id)
+        {
+            return await _context.Tanks
+                                 .Where(s => s.StepId == id)
+                                 .ToListAsync();
+        }
+
         public async Task UpdateAsync(Tank tank)
         {
             _context.Tanks.Update(tank);

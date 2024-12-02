@@ -34,6 +34,11 @@ namespace KemiaBridge.Service.Services
             return await _sensorRepository.GetAllAsync();
         }
 
+        public async Task<IEnumerable<Sensor>> GetByStepAsync(int id)
+        {
+            return await _sensorRepository.GetByStepAsync(id);
+        } 
+
         public async Task<Sensor?> GetByIdAsync(int id)
         {
             return await _sensorRepository.GetByIdAsync(id);    
